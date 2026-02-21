@@ -34,7 +34,7 @@
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
-            utils = import ./utils;
+            utilities = import ./utils;
 
             mkMachine =
                 {
@@ -48,7 +48,7 @@
                     system = "${system}";
                     specialArgs = inputs // {
                         hostname = "${hostname}";
-                        utils = utils;
+                        utilities = utilities;
                     };
                     modules = [
                         ./modules/defaults
@@ -61,10 +61,10 @@
                             home-manager = {
                                 useGlobalPkgs = true;
                                 useUserPkgs = true;
-                                users.${utils.config.username} = ./machines/${hostname}/home.nix;
+                                users.${utilities.config.username} = ./machines/${hostname}/home.nix;
                                 extraSpecialArgs = inputs // {
                                     hostname = "${hostname}";
-                                    utils = utils;
+                                    utilities = utilities;
                                 };
                                 sharedModules = [
                                     ./home-modules/defaults
