@@ -11,7 +11,7 @@
           "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.testbed.options"
         },
         "nixos-home-manager": {
-          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.testbed.home-manager.options"
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.testbed.options.home-manager.users.type.getSubOptions []"
         }
       }
     }

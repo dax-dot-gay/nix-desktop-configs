@@ -1,17 +1,32 @@
-let
-    utils = import ./utils;
-in
 {
     description = "Unified configurations for my desktop/bare-metal systems";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        home-manager = utils.flakes.include "github:nix-community/home-manager";
-        disko = utils.flakes.include "github:nix-community/disko/latest";
-        sops-nix = utils.flakes.include "github:Mic92/sops-nix";
-        niri-flake = utils.flakes.include "github:sodiboo/niri-flake";
-        dms = utils.flakes.include "github:AvengeMedia/DankMaterialShell/stable";
-        stylix = utils.flakes.include "github:nix-community/stylix";
+        home-manager = {
+           url = "github:nix-community/home-manager";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
+        disko = {
+           url = "github:nix-community/disko/latest";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
+        sops-nix = {
+           url = "github:Mic92/sops-nix";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
+        niri-flake = {
+           url = "github:sodiboo/niri-flake";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
+        dms = {
+           url = "github:AvengeMedia/DankMaterialShell/stable";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
+        stylix = {
+           url = "github:nix-community/stylix";
+           inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
@@ -19,6 +34,7 @@ in
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
+            utils = import ./utils;
 
             mkMachine =
                 {
@@ -41,7 +57,7 @@ in
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
                         {
-                            hardware.facter.reportPath = ./machines/${hostname}/facter.json;
+                            #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
                             home-manager = {
                                 useGlobalPkgs = true;
                                 useUserPkgs = true;
