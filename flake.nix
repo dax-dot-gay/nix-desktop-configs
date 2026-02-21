@@ -30,7 +30,7 @@
     };
 
     outputs =
-        { self, nixpkgs, home-manager, ... }@inputs:
+        { self, nixpkgs, ... }@inputs:
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
@@ -60,7 +60,7 @@
                             #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
                             home-manager = {
                                 useGlobalPkgs = true;
-                                useUserPkgs = true;
+                                useUserPackages = true;
                                 users.${utilities.config.username} = ./machines/${hostname}/home.nix;
                                 extraSpecialArgs = inputs // {
                                     hostname = "${hostname}";
