@@ -10,5 +10,7 @@
         openssh
         ssh-to-age
         sops
+        nixd
+        nixfmt-rfc-style
     ];
 }
