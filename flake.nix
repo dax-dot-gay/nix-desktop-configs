@@ -49,6 +49,11 @@
                     specialArgs = inputs // {
                         hostname = "${hostname}";
                         utilities = utilities;
+                        hm_args = {
+                            inputs = inputs;
+                            home-flakes = home-flakes;
+                            home-features = home-features;
+                        };
                     };
                     modules = [
                         ./modules/defaults
@@ -56,14 +61,15 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
-                        {
+                        /*{
                             #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
                             home-manager = {
                                 useGlobalPkgs = true;
                                 useUserPackages = true;
-                                users.${utilities.config.username} = ./machines/${hostname}/home.nix;
+                                users.${username} = ./machines/${hostname}/home.nix;
                                 extraSpecialArgs = inputs // {
                                     hostname = "${hostname}";
+                                    users = users;
                                     utilities = utilities;
                                 };
                                 sharedModules = [
@@ -72,7 +78,7 @@
                                 ++ home-flakes
                                 ++ (map (feature: ./home-modules/features/${feature}) home-features);
                             };
-                        }
+                        }*/
                     ]
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
