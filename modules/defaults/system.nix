@@ -99,6 +99,7 @@ in
                             passwordFile = "/tmp/disk.key";
                             settings = {
                                 allowDiscards = true;
+                                fallbackToPassword = true;
                             };
                             content = {
                                 type = "btrfs";
