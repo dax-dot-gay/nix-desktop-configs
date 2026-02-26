@@ -252,7 +252,8 @@ in
             efiSysMountPoint = "/boot";
         };
         boot.kernelPackages = pkgs.linuxPackages_latest;
-        boot.initrd.availableKernelModules = ["cryptd"];
+        boot.initrd.availableKernelModules = ["cryptd" "virtio" "virtio_net"];
+        boot.initrd.luks.devices.cryptroot.preLVM = true;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
