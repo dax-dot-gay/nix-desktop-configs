@@ -245,8 +245,16 @@ in
                 };
 
         flake.secrets.global."ssh/authorized_keys/dax" = { };
-        flake.secrets.global."ssh/keys/dax/public" = {owner = "root"; group = "nixos-config"; mode = "660";};
-        flake.secrets.global."ssh/keys/dax/private" = {owner = "root"; group = "nixos-config"; mode = "660";};
+        flake.secrets.global."ssh/keys/dax/public" = {
+            owner = "root";
+            group = "nixos-config";
+            mode = "660";
+        };
+        flake.secrets.global."ssh/keys/dax/private" = {
+            owner = "root";
+            group = "nixos-config";
+            mode = "660";
+        };
         users.users = lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
@@ -258,9 +266,15 @@ in
             createHome = true;
             shell = if isNull value.shell then cfg.defaultShell else value.shell;
             isNormalUser = true;
-            openssh.authorizedKeys.keyFiles = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAiAboVZPRR/NJirG0zeB3SBdOYzJ1n3/kYKKRDGu3wq dax@dax.gay" ];
+            openssh.authorizedKeys.keys = [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAiAboVZPRR/NJirG0zeB3SBdOYzJ1n3/kYKKRDGu3wq dax@dax.gay"
+            ];
         }) cfg.users;
-        users.groups = (lib.mapAttrs (name: value: { name = value.username; }) cfg.users) // {nixos-config = {gid = 101;};};
+        users.groups = (lib.mapAttrs (name: value: { name = value.username; }) cfg.users) // {
+            nixos-config = {
+                gid = 101;
+            };
+        };
         users.defaultUserShell = cfg.defaultShell;
 
         flake.secrets.local = listToAttrs (
@@ -273,14 +287,16 @@ in
         );
         system.stateVersion = cfg.stateVersion;
 
-        systemd.tmpfiles.rules = concatStringsSep "\n" (map (user: ''
-            d /home/${user.username}/.ssh 0744 ${user.username} ${user.username}
-            C /home/${user.username}/.ssh/id_ed25519 - - - ${config.sops.secrets."ssh/keys/dax/private".path}
-            C /home/${user.username}/.ssh/id_ed25519.pub - - - ${config.sops.secrets."ssh/keys/dax/public".path}
-            f /home/${user.username}/.ssh/id_ed25519 0600 ${user.username} ${user.username}
-            f /home/${user.username}/.ssh/id_ed25519.pub 0644 ${user.username} ${user.username}
-            L /home/${user.username}/.config/nixos-config - - - - /etc/nixos
-        '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
+        systemd.tmpfiles.rules = concatStringsSep "\n" (
+            map (user: ''
+                d /home/${user.username}/.ssh 0744 ${user.username} ${user.username}
+                C /home/${user.username}/.ssh/id_ed25519 - - - ${config.sops.secrets."ssh/keys/dax/private".path}
+                C /home/${user.username}/.ssh/id_ed25519.pub - - - ${config.sops.secrets."ssh/keys/dax/public".path}
+                f /home/${user.username}/.ssh/id_ed25519 0600 ${user.username} ${user.username}
+                f /home/${user.username}/.ssh/id_ed25519.pub 0644 ${user.username} ${user.username}
+                L /home/${user.username}/.config/nixos-config - - - - /etc/nixos
+            '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users))
+        );
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
