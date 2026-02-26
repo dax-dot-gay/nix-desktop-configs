@@ -192,7 +192,7 @@ in
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users = mapAttrs (name: value: ../../machines/users/${value.username}/home.nix) cfg.users;
+            users = mapAttrs (name: value: ../../machines/${hostname}/${value.username}/home.nix) cfg.users;
             extraSpecialArgs = hm_args.inputs // {
                 hostname = "${hostname}";
                 utilities = utilities;
