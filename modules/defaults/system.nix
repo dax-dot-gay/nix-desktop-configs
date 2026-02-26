@@ -187,11 +187,10 @@ in
         flake.secrets.global."ssh/authorized_keys" = { };
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
-
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users = mapAttrs (name: value: ../../machines/users/${value.username}/home.nix);
+            users = mapAttrs (name: value: ../../machines/users/${value.username}/home.nix) cfg.users;
             extraSpecialArgs = hm_args.inputs // {
                 hostname = "${hostname}";
                 utilities = utilities;
