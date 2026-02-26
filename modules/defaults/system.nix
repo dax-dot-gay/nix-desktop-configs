@@ -253,7 +253,9 @@ in
         };
         boot.kernelPackages = pkgs.linuxPackages_latest;
         boot.initrd.availableKernelModules = ["cryptd" "virtio" "virtio_net"];
-        boot.initrd.luks.devices.cryptroot.preLVM = true;
+        environment.etc.crypttab.text = ''
+            cryptroot /dev/disk/by-partlabel/disk-root-luks
+        '';
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
