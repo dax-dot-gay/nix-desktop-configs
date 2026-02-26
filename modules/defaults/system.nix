@@ -99,7 +99,6 @@ in
                             askPassword = true;
                             settings = {
                                 allowDiscards = true;
-                                fallbackToPassword = true;
                             };
                             content = {
                                 type = "btrfs";
