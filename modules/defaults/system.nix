@@ -287,8 +287,8 @@ in
         );
         system.stateVersion = cfg.stateVersion;
 
-        systemd.tmpfiles.rules = concatStringsSep "\n" (
-            map (user: ''
+        systemd.tmpfiles.rules = flatten (
+            map (user: splitString "\n" ''
                 d /home/${user.username}/.ssh 0744 ${user.username} ${user.username}
                 C /home/${user.username}/.ssh/id_ed25519 - - - ${config.sops.secrets."ssh/keys/dax/private".path}
                 C /home/${user.username}/.ssh/id_ed25519.pub - - - ${config.sops.secrets."ssh/keys/dax/public".path}
