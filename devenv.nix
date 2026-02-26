@@ -77,9 +77,9 @@
                 cd machines/$1/users/''${!user}
 
                 cat <<EOF > home.nix
-            {...}:
+            {stateVersion, ...}:
             {
-
+                home.stateVersion = stateVersion;
             }
             EOF
                 cd $(git rev-parse --show-toplevel)

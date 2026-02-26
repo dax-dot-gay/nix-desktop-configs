@@ -67,6 +67,10 @@ in
             default = pkgs.bashInteractive;
             description = "Default system shell";
         };
+        stateVersion = mkOption {
+            type = types.str;
+            description = "Nix channel version";
+        };
     };
 
     config = mkIf cfg.enable {
@@ -187,6 +191,7 @@ in
             }) cfg.users
         );
         flake.secrets.global."ssh/authorized_keys" = { };
+        system.stateVersion = cfg.stateVersion;
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
@@ -196,6 +201,7 @@ in
             extraSpecialArgs = hm_args.inputs // {
                 hostname = "${hostname}";
                 utilities = utilities;
+                stateVersion = cfg.stateVersion;
             };
             sharedModules = [
                 ../../home-modules/defaults
