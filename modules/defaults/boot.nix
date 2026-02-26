@@ -1,13 +1,4 @@
 { lib, ... }:
 {
-  boot.loader.limine = {
-    enable = true;
-  };
-
-  boot.loader.efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot";
-  };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  boot.initrd.systemd.enable = true;
 }

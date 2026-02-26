@@ -242,7 +242,14 @@ in
         flake.secrets.global."ssh/authorized_keys/dax" = { };
         system.stateVersion = cfg.stateVersion;
 
-        boot.loader.limine.secureBoot.enable = cfg.secureboot;
+        boot.loader.limine = {
+            enable = true;
+            device = cfg.root_disk;
+            efiSupport = true;
+            secureBoot.enable = cfg.secureboot;
+        };
+        boot.initrd.luks.devices.cryptroot.device = cfg.root_disk;
+        boot.initrd.systemd.enable = true;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
