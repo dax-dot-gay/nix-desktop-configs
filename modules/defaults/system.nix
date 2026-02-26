@@ -179,6 +179,7 @@ in
             createHome = true;
             shell = value.shell;
             useDefaultShell = isNull value.shell;
+            isNormalUser = true;
         }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
 
