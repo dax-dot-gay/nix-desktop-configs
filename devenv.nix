@@ -40,20 +40,17 @@
             BRANCH=$(git rev-parse --abbrev-ref HEAD)
             REMOTE=$(git remote get-url origin)
 
-            temp=$(mktemp -d)
-            mkdir -p "$temp/etc"
-            git clone --branch $BRANCH $REMOTE $temp/etc/nixos
-            chmod -R 770 $temp/etc/nixos
+            git clone --branch $BRANCH $REMOTE "machines/$HOSTNAME/.machine-secrets/etc/nixos"
+            chmod -R 770 "machines/$HOSTNAME/.machine-secrets/etc/nixos"
 
             cd $(git rev-parse --show-toplevel)
             nixos-anywhere \
                 --extra-files "machines/$HOSTNAME/.machine-secrets" \
-                --extra-files "$temp" \
                 --chown /etc/nixos 0:101 \
                 --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP \
                 --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
 
-            rm -rf $temp
+            rm -rf "machines/$HOSTNAME/.machine-secrets/etc/nixos"
         '';
         new-machine.exec = ''
             cd $(git rev-parse --show-toplevel)
