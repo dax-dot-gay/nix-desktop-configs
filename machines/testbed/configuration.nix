@@ -6,6 +6,7 @@
         users = {
             dax = {
                 superuser = true;
+                allowSystemConfiguration = true;
             };
         };
         stateVersion = "25.11";

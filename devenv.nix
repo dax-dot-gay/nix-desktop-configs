@@ -37,19 +37,24 @@
 
             HOSTNAME=$1
             TARGET_IP=$2
-            read -s -p "Enter drive encryption key (ignored if not encrypted):" ENCRYPTION_KEY
-            echo
-            echo $ENCRYPTION_KEY > /tmp/$HOSTNAME-enc.key
+            BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            REMOTE=$(git remote get-url origin)
 
-            cleanup() {
-                rm -rf "/tmp/$HOSTNAME-enc.key"
-            }
-
-            trap cleanup EXIT
+            temp=$(mktemp -d)
+            mkdir -p "$temp/etc"
+            git clone --branch $BRANCH $REMOTE $temp/etc/nixos
+            chmod -R 770 $temp/etc/nixos
 
             cd $(git rev-parse --show-toplevel)
-            nixos-anywhere --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key --extra-files "machines/$HOSTNAME/.machine-secrets" --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
+            nixos-anywhere \
+                --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key \
+                --extra-files "machines/$HOSTNAME/.machine-secrets" \
+                --extra-files "$temp" \
+                --chown /etc/nixos 0:101 \
+                --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP \
+                --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
 
+            rm -rf $temp
         '';
         new-machine.exec = ''
             cd $(git rev-parse --show-toplevel)

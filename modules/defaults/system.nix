@@ -25,10 +25,34 @@ let
                     default = false;
                     description = "Whether this user should be able to sudo";
                 };
+                allowSystemConfiguration = mkOption {
+                    type = types.bool;
+                    default = false;
+                    description = ''
+                        Whether this user should be set up to be able to modify the system configuration & associated repository.
+                        This does a few things:
+                        - Grants access to and enables my primary SSH key (secrets."ssh/keys/dax/..") for this user
+                        - Adds the user to the "nixos-config" group
+                        - Links the system configuration into ~/.config/nixos-config
+                        - Implies `superuser`
+                    '';
+                };
                 shell = mkOption {
                     type = types.nullOr (types.either types.path types.shellPackage);
                     default = null;
                     description = "Package of user shell, if different from the system default.";
+                };
+                groups = mkOption {
+                    type = types.listOf types.str;
+                    default = [ ];
+                    description = "Extra groups to add (does not create groups)";
+                };
+                _actual_superuser = mkOption {
+                    type = types.bool;
+                    default =
+                        cfg.users.${config._module.args.name}.superuser
+                        || cfg.users.${config._module.args.name}.allowSystemConfiguration;
+                    description = "Merges superuser and allowSystemConfiguration to imply superuser. DO NOT SET.";
                 };
             };
         }
@@ -221,17 +245,22 @@ in
                 };
 
         flake.secrets.global."ssh/authorized_keys/dax" = { };
+        flake.secrets.global."ssh/keys/dax/public" = {owner = "root"; group = "nixos-config"; mode = "660";};
+        flake.secrets.global."ssh/keys/dax/private" = {owner = "root"; group = "nixos-config"; mode = "660";};
         users.users = lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
-            extraGroups = if value.superuser then [ "wheel" ] else [ ];
+            extraGroups =
+                (optional value._actual_superuser "wheel")
+                ++ (optional value.allowSystemConfiguration "nixos-config")
+                ++ value.groups;
             hashedPasswordFile = config.sops.secrets."users/${value.username}/password".path;
             createHome = true;
             shell = if isNull value.shell then cfg.defaultShell else value.shell;
             isNormalUser = true;
             openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys/dax".path ];
         }) cfg.users;
-        users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
+        users.groups = (lib.mapAttrs (name: value: { name = value.username; }) cfg.users) // {nixos-config = {gid = 101;};};
         users.defaultUserShell = cfg.defaultShell;
 
         flake.secrets.local = listToAttrs (
@@ -244,12 +273,39 @@ in
         );
         system.stateVersion = cfg.stateVersion;
 
+        systemd.tmpfiles.rules = concatStringsSep "\n" (map (user: ''
+            d /home/${user.username}/.ssh 0744 ${user.username} ${user.username}
+            C /home/${user.username}/.ssh/id_ed25519 - - - ${config.sops.secrets."ssh/keys/dax/private".path}
+            C /home/${user.username}/.ssh/id_ed25519.pub - - - ${config.sops.secrets."ssh/keys/dax/public".path}
+            f /home/${user.username}/.ssh/id_ed25519 0600 ${user.username} ${user.username}
+            f /home/${user.username}/.ssh/id_ed25519.pub 0644 ${user.username} ${user.username}
+            L /home/${user.username}/.config/nixos-config - - - - /etc/nixos
+        '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
+
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             users = mapAttrs (
-                name: value: ../../machines/${hostname}/users/${value.username}/home.nix
+                name: value:
+                { ... }:
+                {
+                    imports = [
+                        ../../machines/${hostname}/users/${value.username}/home.nix
+                    ];
+                    homeflake.info = {
+                        username = value.username;
+                        superuser = value._actual_superuser;
+                        shell = if isNull value.shell then cfg.defaultShell else value.shell;
+                        groups = [
+                            value.username
+                        ]
+                        ++ (optional value._actual_superuser "wheel")
+                        ++ (optional value.allowSystemConfiguration "nixos-config")
+                        ++ value.groups;
+                        systemConfigurationAllowed = value.allowSystemConfiguration;
+                    };
+                }
             ) cfg.users;
             extraSpecialArgs = hm_args.inputs // {
                 hostname = "${hostname}";
