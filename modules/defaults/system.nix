@@ -227,8 +227,7 @@ in
             extraGroups = if value.superuser then [ "wheel" ] else [ ];
             hashedPasswordFile = config.sops.secrets."users/${value.username}/password".path;
             createHome = true;
-            shell = value.shell;
-            useDefaultShell = isNull value.shell;
+            shell = if isNull value.shell then cfg.defaultShell else value.shell;
             isNormalUser = true;
             openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys/dax".path ];
         }) cfg.users;
