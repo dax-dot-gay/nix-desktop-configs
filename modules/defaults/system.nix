@@ -246,10 +246,10 @@ in
         flake.secrets.global."ssh/authorized_keys/dax" = { };
         system.stateVersion = cfg.stateVersion;
 
-        boot.loader.grub = {
+        boot.loader.limine = {
             enable = true;
             efiSupport = true;
-            device = "nodev";
+            secureBoot.enable = cfg.secureboot;
         };
         boot.loader.efi = {
             canTouchEfiVariables = true;
@@ -258,12 +258,7 @@ in
         boot.kernelPackages = pkgs.linuxPackages_latest;
         boot.initrd.availableKernelModules = [
             "cryptd"
-            "virtio"
-            "virtio_net"
         ];
-        environment.etc.crypttab.text = ''
-            cryptroot /dev/disk/by-partlabel/disk-root-luks
-        '';
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
