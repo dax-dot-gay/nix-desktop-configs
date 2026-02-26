@@ -25,7 +25,7 @@ in
             description = "Whether to encrypt the root filesystem (btrfs on luks)";
         };
         users = mkOption {
-            type = types.attrsOf types.submodule (
+            type = types.attrsOf (types.submodule (
                 { config, ... }:
                 {
                     username = mkOption {
@@ -44,7 +44,7 @@ in
                         description = "Package of user shell, if different from the system default.";
                     };
                 }
-            );
+            ));
             default = { };
             description = "Set of users to create";
         };
