@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  boot.loader.systemd-boot = {
+  boot.loader.limine = {
     enable = true;
   };
 
