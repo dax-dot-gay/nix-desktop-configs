@@ -196,6 +196,7 @@ in
         system.stateVersion = cfg.stateVersion;
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
+        boot.initrd.devices.cryptroot.device = cfg.root_disk;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
