@@ -75,7 +75,6 @@ in
 
     config = mkIf cfg.enable {
         environment.systemPackages = [ pkgs.sbctl ];
-        services.openssh.authorizedKeysFiles = [ config.sops.secrets."ssh/authorized_keys".path ];
         disko.devices.disk.root = {
             device = mkDefault cfg.root_disk;
             type = "disk";
@@ -180,8 +179,9 @@ in
             shell = value.shell;
             useDefaultShell = isNull value.shell;
             isNormalUser = true;
+            openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys/dax".path ];
         }) cfg.users;
-        users.groups = lib.mapAttrs (name: value: {name = value.username;}) cfg.users;
+        users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
 
         flake.secrets.local = listToAttrs (
@@ -192,14 +192,16 @@ in
                 };
             }) cfg.users
         );
-        flake.secrets.global."ssh/authorized_keys" = { };
+        flake.secrets.global."ssh/authorized_keys/dax" = { };
         system.stateVersion = cfg.stateVersion;
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users = mapAttrs (name: value: ../../machines/${hostname}/users/${value.username}/home.nix) cfg.users;
+            users = mapAttrs (
+                name: value: ../../machines/${hostname}/users/${value.username}/home.nix
+            ) cfg.users;
             extraSpecialArgs = hm_args.inputs // {
                 hostname = "${hostname}";
                 utilities = utilities;
