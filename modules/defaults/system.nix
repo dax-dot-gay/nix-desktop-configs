@@ -293,7 +293,7 @@ in
             wantedBy = ["default.target"];
             script = concatStringsSep "\n" (
             map (user: ''
-                echo "Provisioning ${user.username}...
+                echo "Provisioning ${user.username}..."
                 mkdir /home/${user.username}/.ssh
                 chmod -R 700 /home/${user.username}/.ssh
                 cp ${config.sops.secrets."ssh/keys/dax/private".path} /home/${user.username}/.ssh/id_ed25519
