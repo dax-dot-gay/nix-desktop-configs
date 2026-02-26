@@ -6,7 +6,6 @@
         users = {
             dax = {
                 superuser = true;
-                
             };
         };
         stateVersion = "25.11";

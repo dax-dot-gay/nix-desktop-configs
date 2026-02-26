@@ -4,33 +4,38 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         home-manager = {
-           url = "github:nix-community/home-manager";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         disko = {
-           url = "github:nix-community/disko/latest";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:nix-community/disko/latest";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         sops-nix = {
-           url = "github:Mic92/sops-nix";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:Mic92/sops-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         niri-flake = {
-           url = "github:sodiboo/niri-flake";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:sodiboo/niri-flake";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         dms = {
-           url = "github:AvengeMedia/DankMaterialShell/stable";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:AvengeMedia/DankMaterialShell/stable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         stylix = {
-           url = "github:nix-community/stylix";
-           inputs.nixpkgs.follows = "nixpkgs";
+            url = "github:nix-community/stylix";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
     outputs =
-        { self, nixpkgs, ... }@inputs:
+        {
+            self,
+            nixpkgs,
+            lib,
+            ...
+        }@inputs:
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
@@ -61,25 +66,30 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
-                        /*{
-                            #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
-                            home-manager = {
-                                useGlobalPkgs = true;
-                                useUserPackages = true;
-                                users.${username} = ./machines/${hostname}/home.nix;
-                                extraSpecialArgs = inputs // {
-                                    hostname = "${hostname}";
-                                    users = users;
-                                    utilities = utilities;
-                                };
-                                sharedModules = [
-                                    ./home-modules/defaults
-                                ]
-                                ++ home-flakes
-                                ++ (map (feature: ./home-modules/features/${feature}) home-features);
-                            };
-                        }*/
+                        /*
+                          {
+                              #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
+                              home-manager = {
+                                  useGlobalPkgs = true;
+                                  useUserPackages = true;
+                                  users.${username} = ./machines/${hostname}/home.nix;
+                                  extraSpecialArgs = inputs // {
+                                      hostname = "${hostname}";
+                                      users = users;
+                                      utilities = utilities;
+                                  };
+                                  sharedModules = [
+                                      ./home-modules/defaults
+                                  ]
+                                  ++ home-flakes
+                                  ++ (map (feature: ./home-modules/features/${feature}) home-features);
+                              };
+                          }
+                        */
                     ]
+                    ++ (lib.optional (builtins.pathExists ./machines/${hostname}/facter.json) [
+                        { hardware.facter.reportPath = ./machines/${hostname}/facter.json; }
+                    ])
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
                 };

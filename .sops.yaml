@@ -1,6 +1,6 @@
 keys:
   - &dax age1khpcjxg98tnu65xnnd6nmf95c508jn2lt4tlc8h625yfjngaaetsmp2d8s
-  - &sys-testbed age1k3guj23eyjp7s2remhcvf3uqueny5fdrf2l5q8eqhepccuctf48s68d9ej
+  - &sys-testbed age1hgxy9kgfn5nwpwwshj6k5nftm2yzqcgn6mksq8w5c4uqr2xae9hqd2w66z
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

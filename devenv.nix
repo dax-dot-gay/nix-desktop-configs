@@ -27,6 +27,28 @@
 
             sops set secrets/machines/$1/secrets.yaml "[\"users\"][\"$2\"][\"password\"]" "\"$hashed\""
         '';
+        deploy.exec = ''
+            if [ $# -ne 2 ]; then
+                echo "Usage: deploy <hostname> <target_ip>"
+                exit 1
+            fi
+
+            HOSTNAME=$1
+            TARGET_IP=$2
+            read -s -p "Enter drive encryption key (ignored if not encrypted):" ENCRYPTION_KEY
+            echo
+            echo $ENCRYPTION_KEY > /tmp/$HOSTNAME-enc.key
+
+            cleanup() {
+                rm -rf "/tmp/$HOSTNAME-enc.key"
+            }
+
+            trap cleanup EXIT
+
+            cd $(git rev-parse --show-toplevel)
+            nixos-anywhere --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key --extra-files "machines/$HOSTNAME/.machine-secrets" --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP --generate-hardware-config nixos-facter machines/$HOSTNAME/facter.json
+
+        '';
         new-machine.exec = ''
             cd $(git rev-parse --show-toplevel)
             mkdir -p machines/$1
@@ -37,14 +59,14 @@
             }
             EOF
 
-            mkdir -p machines/$1/.machine-secrets/etc/ssh/ machines/$1/.machine-secrets/ssh
+            mkdir -p machines/$1/.machine-secrets
+            install -d -m755 "machines/$1/.machine-secrets/etc/ssh"
             ssh-keygen -A -f machines/$1/.machine-secrets
-            mv machines/$1/.machine-secrets/etc/ssh/* machines/$1/.machine-secrets/ssh
-            sed -i -e 's/$(id -un)@$(hostname)/root@$1/g' machines/$1/.machine-secrets/ssh/*.pub
-            rm -rf machines/$1/.machine-secrets/etc
+            sed -i -e 's/$(id -un)@$(hostname)/root@$1/g' machines/$1/.machine-secrets/etc/ssh/*.pub
             mkdir -p secrets/machines/$1
+            chmod 600 machines/$1/.machine-secrets/etc/ssh/*
 
-            AGE_KEY=$(ssh-to-age -i machines/$1/.machine-secrets/ssh/ssh_host_ed25519_key.pub)
+            AGE_KEY=$(ssh-to-age -i machines/$1/.machine-secrets/etc/ssh/ssh_host_ed25519_key.pub)
             CODE=$(cat << EOF
             .keys += "$AGE_KEY" | 
             .keys[-1] anchor = "sys-$1" | 
