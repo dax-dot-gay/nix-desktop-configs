@@ -47,7 +47,6 @@
 
             cd $(git rev-parse --show-toplevel)
             nixos-anywhere \
-                --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key \
                 --extra-files "machines/$HOSTNAME/.machine-secrets" \
                 --extra-files "$temp" \
                 --chown /etc/nixos 0:101 \
