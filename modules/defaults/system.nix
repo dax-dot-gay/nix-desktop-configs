@@ -94,60 +94,58 @@ in
                                         mountOptions = [ "umask=0077" ];
                                     };
                                 };
-                                zfs = {
+                                luks = {
                                     size = "100%";
                                     content = {
-                                        type = "zfs";
-                                        pool = "zroot";
+                                        type = "luks";
+                                        name = "cryptroot";
+                                        extraOpenArgs = [ ];
+                                        settings = {
+                                            allowDiscards = true;
+                                        };
+                                        content = {
+                                            type = "lvm_pv";
+                                            vg = "pool";
+                                        };
                                     };
                                 };
                             };
                         };
                     };
-                    zpool = {
-                        zroot = {
-                            type = "zpool";
-                            rootFsOptions = {
-                                mountpoint = "none";
-                                compression = "zstd";
-                                acltype = "posixacl";
-                                xattr = "sa";
-                                "com.sun:auto-snapshot" = "true";
-                            };
-                            options.ashift = "12";
-                            datasets = {
-                                "root" = {
-                                    type = "zfs_fs";
-                                    options = {
-                                        encryption = "aes-256-gcm";
-                                        keyformat = "passphrase";
-                                        #keylocation = "file:///tmp/secret.key";
-                                        keylocation = "prompt";
-                                    };
-                                    mountpoint = "/";
-
-                                };
-                                "root/nix" = {
-                                    type = "zfs_fs";
-                                    options.mountpoint = "/nix";
-                                    mountpoint = "/nix";
-                                };
-
-                                # README MORE: https://wiki.archlinux.org/title/ZFS#Swap_volume
-                                "root/swap" = {
-                                    type = "zfs_volume";
-                                    size = "10M";
-                                    content = {
-                                        type = "swap";
-                                    };
-                                    options = {
-                                        volblocksize = "4096";
-                                        compression = "zle";
-                                        logbias = "throughput";
-                                        sync = "always";
-                                        primarycache = "metadata";
-                                        secondarycache = "none";
-                                        "com.sun:auto-snapshot" = "false";
+                    lvm_vg.pool = {
+                        type = "lvm_vg";
+                        lvs = {
+                            root = {
+                                size = "100%";
+                                content = {
+                                    type = "btrfs";
+                                    extraArgs = [ "-f" ];
+                                    subvolumes = {
+                                        "/root" = {
+                                            mountpoint = "/";
+                                            mountOptions = [
+                                                "compress=zstd"
+                                                "noatime"
+                                            ];
+                                        };
+                                        "/home" = {
+                                            mountpoint = "/home";
+                                            mountOptions = [
+                                                "compress=zstd"
+                                                "noatime"
+                                            ];
+                                        };
+                                        "/nix" = {
+                                            mountpoint = "/nix";
+                                            mountOptions = [
+                                                "compress=zstd"
+                                                "noatime"
+                                            ];
+                                        };
+                                        "/swap" = {
+                                            mountpoint = "/.swapvol";
+                                            swap.swapfile.size = cfg.swapsize;
+                                        };
                                     };
                                 };
                             };
@@ -236,7 +234,6 @@ in
         }) cfg.users;
         users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
-        boot.supportedFilesystems = ["zfs"];
 
         flake.secrets.local = listToAttrs (
             lib.mapAttrsToList (name: value: {
