@@ -252,7 +252,7 @@ in
             efiSysMountPoint = "/boot";
         };
         boot.kernelPackages = pkgs.linuxPackages_latest;
-        boot.initrd.systemd.enable = true;
+        boot.initrd.availableKernelModules = ["cryptd"];
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
