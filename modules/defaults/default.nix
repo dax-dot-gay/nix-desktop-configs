@@ -5,9 +5,7 @@
         ./system.nix
         ./secrets.nix
     ]
-    ++ (lib.optional (builtins.pathExists ./machines/${hostname}/facter.json) [
-        { hardware.facter.reportPath = ./machines/${hostname}/facter.json; }
-    ]);
+    ++ (lib.optional (builtins.pathExists ./machines/${hostname}/hardware-configuration.nix) [ ./machines/${hostname}/hardware-configuration.nix ]);
 
     system.stateVersion = "25.11";
 }

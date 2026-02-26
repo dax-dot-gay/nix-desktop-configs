@@ -46,7 +46,7 @@
             trap cleanup EXIT
 
             cd $(git rev-parse --show-toplevel)
-            nixos-anywhere --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key --extra-files "machines/$HOSTNAME/.machine-secrets" --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP --generate-hardware-config nixos-facter machines/$HOSTNAME/facter.json
+            nixos-anywhere --disk-encryption-keys /tmp/disk.key /tmp/$HOSTNAME-enc.key --extra-files "machines/$HOSTNAME/.machine-secrets" --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
 
         '';
         new-machine.exec = ''

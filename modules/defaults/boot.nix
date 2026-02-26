@@ -9,4 +9,5 @@
     efiSysMountPoint = "/boot";
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  boot.initrd.systemd.enable = true;
 }
