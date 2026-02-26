@@ -75,65 +75,111 @@ in
 
     config = mkIf cfg.enable {
         environment.systemPackages = [ pkgs.sbctl ];
-        disko.devices.disk.root = {
-            device = mkDefault cfg.root_disk;
-            type = "disk";
-            content = {
-                type = "gpt";
-                partitions = {
-                    ESP = {
-                        size = "1G";
-                        type = "EF00";
-                        content = {
-                            type = "filesystem";
-                            format = "vfat";
-                            mountpoint = "/boot";
-                            mountOptions = [ "umask=0077" ];
-                        };
-                    };
-                    luks = mkIf cfg.encryption {
-                        size = "100%";
-                        content = {
-                            type = "luks";
-                            name = "cryptroot";
-                            askPassword = true;
-                            settings = {
-                                allowDiscards = true;
-                            };
+        disko.devices = if cfg.encryption then {
+            disk.root = {
+                device = mkDefault cfg.root_disk;
+                type = "disk";
+                content = {
+                    type = "gpt";
+                    partitions = {
+                        ESP = {
+                            size = "1G";
+                            type = "EF00";
                             content = {
-                                type = "btrfs";
-                                extraArgs = [ "-f" ];
-                                subvolumes = {
-                                    "/root" = {
-                                        mountpoint = "/";
-                                        mountOptions = [
-                                            "compress=zstd"
-                                            "noatime"
-                                        ];
-                                    };
-                                    "/home" = {
-                                        mountpoint = "/home";
-                                        mountOptions = [
-                                            "compress=zstd"
-                                            "noatime"
-                                        ];
-                                    };
-                                    "/nix" = {
-                                        mountpoint = "/nix";
-                                        mountOptions = [
-                                            "compress=zstd"
-                                            "noatime"
-                                        ];
-                                    };
-                                    "/swap" = {
-                                        mountpoint = "/.swapvol";
-                                        swap.swapfile.size = cfg.swapsize;
-                                    };
+                                type = "filesystem";
+                                format = "vfat";
+                                mountpoint = "/boot";
+                                mountOptions = [ "umask=0077" ];
+                            };
+                        };
+                        luks = {
+                            size = "100%";
+                            content = {
+                                type = "luks";
+                                name = "cryptroot";
+                                extraOpenArgs = [];
+                                settings = {
+                                    allowDiscards = true;
+                                };
+                                content = {
+                                    type = "lvm_pv";
+                                    vg = "pool";
                                 };
                             };
                         };
                     };
-                    noluks = mkIf (!cfg.encryption) {
+                };
+            };
+            lvm_vg.pool = {
+                type = "lvm_vg";
+                lvs = {
+                    root = {
+                        size = "100%";
+                        content = {
+                            type = "btrfs";
+                            extraArgs = [ "-f" ];
+                            subvolumes = {
+                                "/root" = {
+                                    mountpoint = "/";
+                                    mountOptions = [
+                                        "compress=zstd"
+                                        "noatime"
+                                    ];
+                                };
+                                "/home" = {
+                                    mountpoint = "/home";
+                                    mountOptions = [
+                                        "compress=zstd"
+                                        "noatime"
+                                    ];
+                                };
+                                "/nix" = {
+                                    mountpoint = "/nix";
+                                    mountOptions = [
+                                        "compress=zstd"
+                                        "noatime"
+                                    ];
+                                };
+                                "/swap" = {
+                                    mountpoint = "/.swapvol";
+                                    swap.swapfile.size = cfg.swapsize;
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+        } else {
+            disk.root = {
+                device = mkDefault cfg.root_disk;
+                type = "disk";
+                content = {
+                    type = "gpt";
+                    partitions = {
+                        ESP = {
+                            size = "1G";
+                            type = "EF00";
+                            content = {
+                                type = "filesystem";
+                                format = "vfat";
+                                mountpoint = "/boot";
+                                mountOptions = [ "umask=0077" ];
+                            };
+                        };
+                        lvm = {
+                            size = "100%";
+                            content = {
+                                type = "lvm_pv";
+                                vg = "pool";
+                            };
+                        };
+                    };
+                };
+            };
+            lvm_vg.pool = {
+                type = "lvm_vg";
+                lvs = {
+                    root = {
                         size = "100%";
                         content = {
                             type = "btrfs";
@@ -170,6 +216,7 @@ in
                 };
             };
         };
+        
         users.users = lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
@@ -196,7 +243,6 @@ in
         system.stateVersion = cfg.stateVersion;
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
-        boot.initrd.luks.devices.cryptroot.device = cfg.root_disk;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
