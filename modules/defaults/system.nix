@@ -10,6 +10,29 @@
 with lib;
 let
     cfg = config.flake.system-configuration;
+
+    usersSubmodule = types.submodule (
+        { config, ... }:
+        {
+            options = {
+                username = mkOption {
+                    type = types.str;
+                    default = config._module.args.name;
+                    description = "Name of this user";
+                };
+                superuser = mkOption {
+                    type = types.bool;
+                    default = false;
+                    description = "Whether this user should be able to sudo";
+                };
+                shell = mkOption {
+                    type = types.nullOr (types.either types.path types.shellPackage);
+                    default = null;
+                    description = "Package of user shell, if different from the system default.";
+                };
+            };
+        }
+    );
 in
 {
     options.flake.system-configuration = {
@@ -25,26 +48,7 @@ in
             description = "Whether to encrypt the root filesystem (btrfs on luks)";
         };
         users = mkOption {
-            type = types.attrsOf (types.submodule (
-                { config, ... }:
-                {
-                    username = mkOption {
-                        type = types.str;
-                        default = config._module.args.name;
-                        description = "Name of this user";
-                    };
-                    superuser = mkOption {
-                        type = types.bool;
-                        default = false;
-                        description = "Whether this user should be able to sudo";
-                    };
-                    shell = mkOption {
-                        type = types.nullOr (types.either types.path types.shellPackage);
-                        default = null;
-                        description = "Package of user shell, if different from the system default.";
-                    };
-                }
-            ));
+            type = types.attrsOf usersSubmodule;
             default = { };
             description = "Set of users to create";
         };
