@@ -242,11 +242,16 @@ in
         flake.secrets.global."ssh/authorized_keys/dax" = { };
         system.stateVersion = cfg.stateVersion;
 
-        boot.loader.limine = {
+        boot.loader.grub = {
             enable = true;
             efiSupport = true;
-            secureBoot.enable = cfg.secureboot;
+            device = "nodev";
         };
+        boot.loader.efi = {
+            canTouchEfiVariables = true;
+            efiSysMountPoint = "/boot";
+        };
+        boot.kernelPackages = pkgs.linuxPackages_latest;
         boot.initrd.systemd.enable = true;
         home-manager = {
             useGlobalPkgs = true;
