@@ -74,7 +74,6 @@ in
     };
 
     config = mkIf cfg.enable {
-        environment.systemPackages = [ pkgs.sbctl ];
         disko.devices =
             if cfg.encryption then
                 {
@@ -221,6 +220,7 @@ in
                     };
                 };
 
+        flake.secrets.global."ssh/authorized_keys/dax" = { };
         users.users = lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
@@ -233,7 +233,6 @@ in
         }) cfg.users;
         users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
-        programs.zsh.enable = true;
 
         flake.secrets.local = listToAttrs (
             lib.mapAttrsToList (name: value: {
@@ -243,22 +242,9 @@ in
                 };
             }) cfg.users
         );
-        flake.secrets.global."ssh/authorized_keys/dax" = { };
         system.stateVersion = cfg.stateVersion;
 
-        boot.loader.limine = {
-            enable = true;
-            efiSupport = true;
-            secureBoot.enable = cfg.secureboot;
-        };
-        boot.loader.efi = {
-            canTouchEfiVariables = true;
-            efiSysMountPoint = "/boot";
-        };
-        boot.kernelPackages = pkgs.linuxPackages_latest;
-        boot.initrd.availableKernelModules = [
-            "cryptd"
-        ];
+        boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
