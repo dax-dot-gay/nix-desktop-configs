@@ -236,6 +236,7 @@ in
         }) cfg.users;
         users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
+        boot.supportedFilesystems = ["zfs"];
 
         flake.secrets.local = listToAttrs (
             lib.mapAttrsToList (name: value: {

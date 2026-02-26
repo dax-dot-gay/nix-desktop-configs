@@ -15,9 +15,11 @@
         hostname
         yq-go
         mkpasswd
+        openssl
     ];
 
     scripts = {
+
         make-password.exec = ''
             cd $(git rev-parse --show-toplevel)
             read -s -p "Enter password for $2 on $1:" password
@@ -56,6 +58,13 @@
             {...}:
             {
 
+            }
+            EOF
+
+            cat <<EOF > machines/$1/auto.nix
+            {...}:
+            {
+                networking.hostId = "$(openssl rand -hex 4)";
             }
             EOF
 
