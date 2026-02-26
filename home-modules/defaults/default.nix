@@ -1,7 +1,7 @@
-{ stateVersion, ... }:
+{ stateVersion, lib, ... }:
 {
     imports = [];
     home.stateVersion = stateVersion;
-    nixpkgs.config = null;
-    nixpkgs.overlays = null;
+    nixpkgs.config = lib.mkForce null;
+    nixpkgs.overlays = lib.mkForce null;
 }
