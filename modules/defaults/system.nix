@@ -258,7 +258,7 @@ in
             createHome = true;
             shell = if isNull value.shell then cfg.defaultShell else value.shell;
             isNormalUser = true;
-            openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys/dax".path ];
+            openssh.authorizedKeys.keyFiles = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAiAboVZPRR/NJirG0zeB3SBdOYzJ1n3/kYKKRDGu3wq dax@dax.gay" ];
         }) cfg.users;
         users.groups = (lib.mapAttrs (name: value: { name = value.username; }) cfg.users) // {nixos-config = {gid = 101;};};
         users.defaultUserShell = cfg.defaultShell;
