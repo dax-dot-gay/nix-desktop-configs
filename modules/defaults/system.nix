@@ -95,7 +95,7 @@ in
                         size = "100%";
                         content = {
                             type = "luks";
-                            name = "crypt-root";
+                            name = "cryptroot";
                             askPassword = true;
                             settings = {
                                 allowDiscards = true;
