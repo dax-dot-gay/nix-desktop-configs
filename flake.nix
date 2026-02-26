@@ -33,7 +33,6 @@
         {
             self,
             nixpkgs,
-            lib,
             ...
         }@inputs:
         let
@@ -87,9 +86,6 @@
                           }
                         */
                     ]
-                    ++ (lib.optional (builtins.pathExists ./machines/${hostname}/facter.json) [
-                        { hardware.facter.reportPath = ./machines/${hostname}/facter.json; }
-                    ])
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
                 };
