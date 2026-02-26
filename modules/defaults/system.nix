@@ -96,7 +96,7 @@ in
                         content = {
                             type = "luks";
                             name = "crypt-root";
-                            passwordFile = "/tmp/disk.key";
+                            askPassword = true;
                             settings = {
                                 allowDiscards = true;
                                 fallbackToPassword = true;
