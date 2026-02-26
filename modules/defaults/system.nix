@@ -287,16 +287,33 @@ in
         );
         system.stateVersion = cfg.stateVersion;
 
-        systemd.tmpfiles.rules = flatten (
-            map (user: splitString "\n" ''
-                d /home/${user.username}/.ssh 0744 ${user.username} ${user.username}
-                C /home/${user.username}/.ssh/id_ed25519 - - - ${config.sops.secrets."ssh/keys/dax/private".path}
-                C /home/${user.username}/.ssh/id_ed25519.pub - - - ${config.sops.secrets."ssh/keys/dax/public".path}
-                f /home/${user.username}/.ssh/id_ed25519 0600 ${user.username} ${user.username}
-                f /home/${user.username}/.ssh/id_ed25519.pub 0644 ${user.username} ${user.username}
-                L /home/${user.username}/.config/nixos-config - - - - /etc/nixos
-            '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users))
-        );
+        systemd.services.allow-system-configuration = {
+            enable = true;
+            after = ["network.target"];
+            wantedBy = ["default.target"];
+            script = concatStringsSep "\n" (
+            map (user: ''
+                echo "Provisioning ${user.username}...
+                mkdir /home/${user.username}/.ssh
+                chmod -R 700 /home/${user.username}/.ssh
+                cp ${config.sops.secrets."ssh/keys/dax/private".path} /home/${user.username}/.ssh/id_ed25519
+                cp ${config.sops.secrets."ssh/keys/dax/public".path} /home/${user.username}/.ssh/id_ed25519.pub
+                chmod 600 /home/${user.username}/.ssh/id_ed25519
+                chmod 644 /home/${user.username}/.ssh/id_ed25519.pub
+                chown -R ${user.username}:${user.username} /home/${user.username}/.ssh
+                mkdir -p /home/${user.username}/.config
+                chown ${user.username}:${user.username} /home/${user.username}/.config
+                ln -s /etc/nixos /home/${user.username}/.config/nixos-config
+                echo "---"
+                echo
+            '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
+            serviceConfig = { 
+                Type = "oneshot";
+                DynamicUser = "no";
+                User = "root";
+                Group = "root";
+             };
+        };
 
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
