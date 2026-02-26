@@ -244,7 +244,6 @@ in
 
         boot.loader.limine = {
             enable = true;
-            device = cfg.root_disk;
             efiSupport = true;
             secureBoot.enable = cfg.secureboot;
         };
