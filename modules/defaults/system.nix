@@ -221,7 +221,7 @@ in
                     };
                 };
 
-        users.users = lib.mapAttrs (name: value: {
+        users.users = (lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
             extraGroups = if value.superuser then [ "wheel" ] else [ ];
@@ -231,7 +231,7 @@ in
             useDefaultShell = isNull value.shell;
             isNormalUser = true;
             openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys/dax".path ];
-        }) cfg.users;
+        }) cfg.users) // {root.initialPassword = "root";};
         users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
         programs.zsh.enable = true;
