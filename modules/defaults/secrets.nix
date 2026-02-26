@@ -8,6 +8,7 @@ with lib;
 let
     cfg = config.flake.secrets;
     sops = config.sops;
+    users = config.users.users;
     secret-options = types.submodule (
         { config, ... }:
         {
