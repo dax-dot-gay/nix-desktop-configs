@@ -22,7 +22,7 @@ in
             enable = true;
             allowSFTP = cfg.sftp;
             settings = {
-                PermitRootLogin = false;
+                PermitRootLogin = "no";
                 PasswordAuthentication = false;
                 X11Forwarding = cfg.x11;
             };
