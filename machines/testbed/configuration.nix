@@ -15,4 +15,5 @@
         enable = true;
         sftp = true;
     };
+    programs.zsh.enable = true;
 }
