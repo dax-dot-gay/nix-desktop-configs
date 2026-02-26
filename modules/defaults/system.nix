@@ -181,6 +181,7 @@ in
             useDefaultShell = isNull value.shell;
             isNormalUser = true;
         }) cfg.users;
+        users.groups = lib.mapAttrs (name: value: {name = value.username;}) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
 
         flake.secrets.local = listToAttrs (
