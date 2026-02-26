@@ -247,7 +247,6 @@ in
             efiSupport = true;
             secureBoot.enable = cfg.secureboot;
         };
-        boot.initrd.luks.devices.cryptroot.device = cfg.root_disk;
         boot.initrd.systemd.enable = true;
         home-manager = {
             useGlobalPkgs = true;
