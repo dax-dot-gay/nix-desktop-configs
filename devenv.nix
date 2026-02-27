@@ -51,6 +51,7 @@
                 --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
 
             rm -rf "machines/$HOSTNAME/.machine-secrets/etc/nixos"
+            ssh-keygen -R $TARGET_IP
         '';
         new-machine.exec = ''
             cd $(git rev-parse --show-toplevel)
