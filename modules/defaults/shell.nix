@@ -24,6 +24,7 @@
         yazi
         zellij
         bat
+        lsd
     ];
     programs.git = {
         enable = true;
