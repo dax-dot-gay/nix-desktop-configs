@@ -348,6 +348,9 @@ in
             };
             sharedModules = [
                 ../../home-modules/defaults
+                hm_args.inputs.catppuccin.homeModules.catppuccin
+                hm_args.inputs.sops-nix.homeManagerModules.sops
+                hm_args.inputs.dms.homeModules.dank-material-shell
             ]
             ++ hm_args.home-flakes
             ++ (map (feature: ../../home-modules/features/${feature}) hm_args.home-features);
