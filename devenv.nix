@@ -48,7 +48,7 @@
                 --extra-files "machines/$HOSTNAME/.machine-secrets" \
                 --chown /etc/nixos 0:101 \
                 --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP \
-                --generate-hardware-config nixos-facter machines/$HOSTNAME/facter.json
+                --generate-hardware-config nixos-generate-config machines/$HOSTNAME/hardware-configuration.nix
 
             rm -rf "machines/$HOSTNAME/.machine-secrets/etc/nixos"
             ssh-keygen -R $TARGET_IP

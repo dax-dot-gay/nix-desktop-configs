@@ -19,4 +19,3 @@ devenv.local.yaml
 .machine-secrets
 .user-secrets
 .decrypted~*
-facter.json
