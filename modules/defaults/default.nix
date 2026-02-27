@@ -7,6 +7,7 @@
         ./network.nix
         ./openssh.nix
         ./shell.nix
+        ./style.nix
         ../../machines/${hostname}/auto.nix
     ];
 

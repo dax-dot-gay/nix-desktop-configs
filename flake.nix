@@ -23,8 +23,8 @@
             url = "github:AvengeMedia/DankMaterialShell/stable";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        stylix = {
-            url = "github:nix-community/stylix";
+        catppuccin = {
+            url = "github:catppuccin/nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
@@ -65,26 +65,9 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
-                        /*
-                          {
-                              #hardware.facter.reportPath = ./machines/${hostname}/facter.json;
-                              home-manager = {
-                                  useGlobalPkgs = true;
-                                  useUserPackages = true;
-                                  users.${username} = ./machines/${hostname}/home.nix;
-                                  extraSpecialArgs = inputs // {
-                                      hostname = "${hostname}";
-                                      users = users;
-                                      utilities = utilities;
-                                  };
-                                  sharedModules = [
-                                      ./home-modules/defaults
-                                  ]
-                                  ++ home-flakes
-                                  ++ (map (feature: ./home-modules/features/${feature}) home-features);
-                              };
-                          }
-                        */
+                        inputs.niri-flake.nixosModules.niri
+                        inputs.dms.nixosModules.dank-material-shell
+                        inputs.catppuccin.nixosModules.catppuccin
                     ]
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
@@ -94,16 +77,6 @@
             nixosConfigurations = {
                 testbed = mkMachine {
                     hostname = "testbed";
-                    flakes = with inputs; [
-                        niri-flake.nixosModules.niri
-                        dms.nixosModules.dank-material-shell
-                        stylix.nixosModules.stylix
-                    ];
-                    home-flakes = with inputs; [
-                        stylix.homeModules.stylix
-                        sops-nix.homeManagerModules.sops
-                        dms.homeModules.dank-material-shell
-                    ];
                 };
             };
         };
