@@ -1,7 +1,4 @@
-{ hm_args, ... }:
-let
-    inputs = hm_args.inputs;
-in
+{ inputs, ... }:
 {
     imports = [
         inputs.catppuccin.homeModules.catppuccin
