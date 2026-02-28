@@ -27,6 +27,14 @@
             url = "github:catppuccin/nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        dms-plugin-registry = {
+            url = "github:AvengeMedia/dms-plugin-registry";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nix-monitor = {
+            url = "github:antonjah/nix-monitor";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =

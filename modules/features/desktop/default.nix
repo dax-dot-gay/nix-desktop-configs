@@ -2,13 +2,18 @@
     niri-flake,
     dms,
     catppuccin,
+    nix-monitor,
     ...
 }:
 {
     imports = [
         niri-flake.nixosModules.niri
         dms.nixosModules.dank-material-shell
+        dms.nixosModules.greeter
         catppuccin.nixosModules.catppuccin
+        nix-monitor.nixosModules.default
         ./style
+        ./dms.nix
+        ./niri.nix
     ];
 }

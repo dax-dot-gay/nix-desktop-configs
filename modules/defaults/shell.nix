@@ -25,6 +25,7 @@
         zellij
         bat
         lsd
+        polkit
     ];
     programs.git = {
         enable = true;
