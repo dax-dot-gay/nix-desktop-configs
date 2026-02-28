@@ -65,9 +65,6 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
-                        inputs.niri-flake.nixosModules.niri
-                        inputs.dms.nixosModules.dank-material-shell
-                        inputs.catppuccin.nixosModules.catppuccin
                     ]
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
@@ -77,6 +74,8 @@
             nixosConfigurations = {
                 testbed = mkMachine {
                     hostname = "testbed";
+                    features = [ "desktop" ];
+                    home-features = [ "desktop" ];
                 };
             };
         };
