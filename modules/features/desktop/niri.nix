@@ -1,10 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, niri-wip, ... }:
 {
-    programs.niri = {
-        enable = true;
-        package = pkgs.niri;
-    };
-    niri-flake.cache.enable = false;
     environment.variables = {
         NIXOS_OZONE_WL = "1";
         XDG_CURRENT_DESKTOP = "GNOME";
@@ -19,4 +14,11 @@
         gamescope
         xwayland-satellite
     ];
+
+    programs.niri = {
+        enable = true;
+        package = niri-wip.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+        withXDG = true;
+        useNautilus = false;
+    };
 }

@@ -2,7 +2,7 @@
     dms,
     catppuccin,
     dms-plugin-registry,
-    niri-flake,
+    niri-nix,
     ...
 }:
 {
@@ -11,8 +11,7 @@
         dms.homeModules.dank-material-shell
         dms.homeModules.niri
         dms-plugin-registry.modules.default
-        niri-flake.homeModules.niri
-        niri-flake.homeModules.config
+        niri-nix.homeModules.default
         ./style
         ./dms.nix
         ./niri

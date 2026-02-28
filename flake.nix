@@ -15,8 +15,8 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        niri-flake = {
-            url = "github:sodiboo/niri-flake";
+        niri-nix = {
+            url = "git+https://codeberg.org/BANanaD3V/niri-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         dms = {
@@ -34,6 +34,15 @@
         nix-monitor = {
             url = "github:antonjah/nix-monitor";
             inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # Basing some of this off https://github.com/nficca/nixos-config
+        niri-wip = {
+            url = "github:niri-wm/niri/wip/branch";
+            inputs.nixpkgs.follows = "nixpkgs";
+
+            # https://github.com/niri-wm/niri/blob/2dc6f4482c4eeed75ea8b133d89cad8658d38429/flake.nix#L8-L9
+            inputs.rust-overlay.follows = "";
         };
     };
 

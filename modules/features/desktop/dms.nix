@@ -17,6 +17,7 @@
             enable = true;
             compositor.name = "niri";
         };
+        niri.includes.enable = false;
     };
 
     environment.systemPackages = with pkgs; [
