@@ -1,8 +1,12 @@
-{ inputs, ... }:
+{
+    dms,
+    catppuccin,
+    ...
+}:
 {
     imports = [
-        inputs.catppuccin.homeModules.catppuccin
-        inputs.dms.homeModules.dank-material-shell
+        catppuccin.homeModules.catppuccin
+        dms.homeModules.dank-material-shell
         ./style
     ];
 }
