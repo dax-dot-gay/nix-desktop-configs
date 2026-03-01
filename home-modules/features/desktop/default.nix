@@ -17,6 +17,7 @@
         ./style
         ./dms.nix
         ./development
+        ./browser.nix
     ];
     home.packages = with pkgs; [
         nemo
