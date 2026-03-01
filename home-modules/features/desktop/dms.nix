@@ -2,6 +2,7 @@
 {
     programs.dank-material-shell = {
         enable = true;
+        enableCalendarEvents = false;
         plugins = {
             nixMonitor.enable = true;
             niriScreenshot.enable = true;
