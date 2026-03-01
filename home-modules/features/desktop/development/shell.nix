@@ -68,6 +68,7 @@
     };
     home.packages = with pkgs; [
         devenv
+        nixd
     ];
     programs.direnv = {
         enable = true;
