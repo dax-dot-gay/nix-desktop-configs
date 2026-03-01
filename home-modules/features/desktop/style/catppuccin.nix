@@ -19,5 +19,6 @@
             fonts.enable = true;
         };
         targets.vscode.enable = false;
+        icons.enable = true;
     };
 }
