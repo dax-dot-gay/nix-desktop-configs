@@ -15,6 +15,8 @@
             gtk.enable = true;
             plymouth.enable = true;
         };
+        icons.enable = true;
+        icons.package = pkgs.catppuccin-papirus-folders;
     };
     boot.plymouth.enable = true;
 }
