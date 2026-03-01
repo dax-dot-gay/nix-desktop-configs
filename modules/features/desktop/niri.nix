@@ -3,7 +3,6 @@
     environment.variables = {
         NIXOS_OZONE_WL = "1";
         XDG_CURRENT_DESKTOP = "GNOME";
-        QT_QPA_PLATFORMTHEME = "gtk3";
     };
 
     environment.systemPackages = with pkgs; [
