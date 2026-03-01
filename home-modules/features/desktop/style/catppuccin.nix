@@ -10,6 +10,7 @@
             fonts.enable = true;
         };
         targets.vscode.enable = false;
+        targets.librewolf.profileNames = ["default"];
     };
     gtk.iconTheme.package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
     gtk.iconTheme.name = "Catppuccin Mocha Mauve";
