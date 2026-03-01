@@ -1,6 +1,5 @@
-{ nur, pkgs, ... }:
+{ pkgs, ... }:
 {
-    nixpkgs.overlays = [ nur.overlays.default ];
     programs.librewolf = {
         enable = true;
         profiles.default = {

@@ -68,6 +68,9 @@
             pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
+                overlays = [
+                    inputs.nur.overlays.default
+                ];
             };
             utilities = import ./utils;
 
@@ -84,6 +87,7 @@
                     specialArgs = inputs // {
                         hostname = "${hostname}";
                         utilities = utilities;
+                        pkgs = pkgs;
                         hm_args = {
                             inputs = inputs;
                             home-flakes = home-flakes;
