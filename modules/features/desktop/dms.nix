@@ -10,7 +10,7 @@
         enableSystemMonitoring = true;
         enableVPN = true;
         enableAudioWavelength = true;
-        enableCalendarEvents = true;
+        enableCalendarEvents = false;
         enableClipboardPaste = true;
         enableDynamicTheming = false;
         greeter = {
