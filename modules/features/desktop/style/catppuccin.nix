@@ -3,9 +3,8 @@
     stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-        autoEnable = false;
+        autoEnable = true;
         targets = {
-            gtk.enable = true;
             plymouth.enable = true;
         };
     };
