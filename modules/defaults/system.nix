@@ -293,21 +293,24 @@ in
             wantedBy = ["default.target"];
             script = concatStringsSep "\n" (
             map (user: ''
-                echo "Provisioning ${user.username}..."
-                mkdir -p /home/${user.username}/.ssh
-                chmod -R 700 /home/${user.username}/.ssh
-                cp ${config.sops.secrets."ssh/keys/dax/private".path} /home/${user.username}/.ssh/id_ed25519
-                cp ${config.sops.secrets."ssh/keys/dax/public".path} /home/${user.username}/.ssh/id_ed25519.pub
-                chmod 600 /home/${user.username}/.ssh/id_ed25519
-                chmod 644 /home/${user.username}/.ssh/id_ed25519.pub
-                chown -R ${user.username}:${user.username} /home/${user.username}/.ssh
-                mkdir -p /home/${user.username}/.config
-                chown ${user.username}:${user.username} /home/${user.username}/.config
-                ln -s /etc/nixos /home/${user.username}/.config/nixos-config
-                chown root:nixos-config /home/${user.username}/.config/nixos-config
-                chmod -R 777 /home/${user.username}/.config/nixos-config
-                echo "---"
-                echo
+                if [ ! -f /home/${user.username}/.initialized ]; then
+                    echo "Provisioning ${user.username}..."
+                    mkdir -p /home/${user.username}/.ssh
+                    chmod -R 700 /home/${user.username}/.ssh
+                    cp ${config.sops.secrets."ssh/keys/dax/private".path} /home/${user.username}/.ssh/id_ed25519
+                    cp ${config.sops.secrets."ssh/keys/dax/public".path} /home/${user.username}/.ssh/id_ed25519.pub
+                    chmod 600 /home/${user.username}/.ssh/id_ed25519
+                    chmod 644 /home/${user.username}/.ssh/id_ed25519.pub
+                    chown -R ${user.username}:${user.username} /home/${user.username}/.ssh
+                    mkdir -p /home/${user.username}/.config
+                    chown ${user.username}:${user.username} /home/${user.username}/.config
+                    ln -s /etc/nixos /home/${user.username}/.config/nixos-config
+                    chown root:nixos-config /home/${user.username}/.config/nixos-config
+                    chmod -R 777 /home/${user.username}/.config/nixos-config
+                    touch /home/${user.username}/.initialized
+                    echo "---"
+                    echo
+                fi
             '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
             serviceConfig = { 
                 Type = "oneshot";
