@@ -28,11 +28,6 @@
         enable = true;
         settings = {
             faviconService = "twenty";
-            theme = {
-                dark = {
-                    name = "catppuccin-mocha";
-                };
-            };
         };
     };
 }
