@@ -44,6 +44,10 @@
             # https://github.com/niri-wm/niri/blob/2dc6f4482c4eeed75ea8b133d89cad8658d38429/flake.nix#L8-L9
             inputs.rust-overlay.follows = "";
         };
+        nix-vscode-extensions = {
+            url = "github:nix-community/nix-vscode-extensions";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
@@ -54,7 +58,11 @@
         }@inputs:
         let
             system = "x86_64-linux";
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+                overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+            };
             utilities = import ./utils;
 
             mkMachine =
@@ -91,6 +99,11 @@
             nixosConfigurations = {
                 testbed = mkMachine {
                     hostname = "testbed";
+                    features = [ "desktop" ];
+                    home-features = [ "desktop" ];
+                };
+                stryker = mkMachine {
+                    hostname = "stryker";
                     features = [ "desktop" ];
                     home-features = [ "desktop" ];
                 };

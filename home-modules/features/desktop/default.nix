@@ -3,6 +3,7 @@
     catppuccin,
     dms-plugin-registry,
     niri-nix,
+    pkgs,
     ...
 }:
 {
@@ -14,6 +15,22 @@
         niri-nix.homeModules.default
         ./style
         ./dms.nix
-        ./niri
+        ./development
     ];
+    home.packages = with pkgs; [
+        nemo
+        nemo-fileroller
+        nemo-preview
+    ];
+    programs.vicinae = {
+        enable = true;
+        settings = {
+            faviconService = "twenty";
+            theme = {
+                dark = {
+                    name = "catppuccin-mocha";
+                };
+            };
+        };
+    };
 }
