@@ -47,6 +47,10 @@
             url = "github:nix-community/nix-vscode-extensions";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        stylix = {
+            url = "github:nix-community/stylix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
@@ -60,7 +64,6 @@
             pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ inputs.nix-vscode-extensions.overlays.default ];
             };
             utilities = import ./utils;
 

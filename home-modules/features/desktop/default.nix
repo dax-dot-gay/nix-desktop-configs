@@ -4,6 +4,7 @@
     dms-plugin-registry,
     niri-nix,
     nix-monitor,
+    stylix,
     pkgs,
     ...
 }:
@@ -14,6 +15,7 @@
         dms-plugin-registry.modules.default
         niri-nix.homeModules.default
         nix-monitor.homeManagerModules.default
+        stylix.homeModules.stylix
         ./style
         ./dms.nix
         ./development

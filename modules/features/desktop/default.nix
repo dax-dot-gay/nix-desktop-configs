@@ -3,6 +3,7 @@
     catppuccin,
     nix-monitor,
     niri-nix,
+    stylix,
     ...
 }:
 {
@@ -12,6 +13,7 @@
         catppuccin.nixosModules.catppuccin
         nix-monitor.nixosModules.default
         niri-nix.nixosModules.default
+        stylix.nixosModules.stylix
         ./style
         ./dms.nix
         ./niri.nix
