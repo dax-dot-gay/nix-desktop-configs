@@ -1,7 +1,7 @@
 { pkgs, nix-vscode-extensions, ... }:
 let
     system = "x86_64-linux";
-    extensions = (import <nixpkgs> { inherit system; config.allowUnfree = true; overlays = [ nix-vscode-extensions.overlays.default ]; }).nix-vscode-extensions;
+    extensions = nix-vscode-extensions.extensions.${system};
 in
 {
     programs.vscode = {
