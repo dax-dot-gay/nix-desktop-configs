@@ -1,11 +1,14 @@
 { pkgs, nix-vscode-extensions, ... }:
+let
+    system = "x86_64-linux";
+    extensions = (import <nixpkgs> { inherit system; config.allowUnfree = true; overlays = [ nix-vscode-extensions.overlays.default ]; }).nix-vscode-extensions;
+in
 {
-    nixpkgs.overlays = [nix-vscode-extensions.overlays.default];
     programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
         profiles.default.extensions =
-            (with pkgs.vscode-extensions.open-vsx-release; [
+            (with extensions.open-vsx-release; [
                 signageos.signageos-vscode-sops
                 gavinleroy.argus
                 ms-python.autopep8
@@ -41,7 +44,7 @@
                 tombi-toml.tombi
                 redhat.vscode-yaml
             ])
-            ++ (with pkgs.vscode-extensions.vscode-marketplace-release; [
+            ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
             ]);
     };
