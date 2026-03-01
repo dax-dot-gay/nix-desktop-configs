@@ -33,7 +33,6 @@
         };
         nix-monitor = {
             url = "github:antonjah/nix-monitor";
-            inputs.nixpkgs.follows = "nixpkgs";
         };
 
         # Basing some of this off https://github.com/nficca/nixos-config

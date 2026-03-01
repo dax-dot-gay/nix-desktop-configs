@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
     programs.fastfetch.enable = true;
     programs.ghostty = {
@@ -64,6 +64,25 @@
             distro = null;
             pride_month_disable = false;
             custom_ascii_path = null;
+        };
+    };
+    home.packages = with pkgs; [
+        devenv
+    ];
+    programs.direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv = {
+            enable = true;
+        };
+    };
+    programs.git = {
+        enable = true;
+        settings = {
+            user = {
+                email = "git@dax.gay";
+                name = "Dax Harris";
+            };
         };
     };
 }
