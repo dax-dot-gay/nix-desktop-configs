@@ -21,4 +21,5 @@
         targets.vscode.enable = false;
     };
     gtk.iconTheme.package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
+    gtk.iconTheme.name = "Catppuccin Mocha Mauve";
 }
