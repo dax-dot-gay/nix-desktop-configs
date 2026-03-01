@@ -13,9 +13,9 @@
         ./openssh.nix
         ./shell.nix
         ../../machines/${hostname}/auto.nix
-    ]
-    ++ (lib.optional (builtins.pathExists ../../machines/${hostname}/hardware-configuration.nix) ../../machines/${hostname}/hardware-configuration.nix);
+    ];
 
+    hardware.facter.reportPath = lib.mkIf (builtins.pathExists ../../machines/${hostname}/facter.json) ../../machines/${hostname}/facter.json;
     system.stateVersion = "25.11";
     nix.settings.experimental-features = [
         "nix-command"
