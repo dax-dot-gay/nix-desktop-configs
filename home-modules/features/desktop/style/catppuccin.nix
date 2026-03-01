@@ -7,7 +7,7 @@
         gtk = {
             icon.enable = false;
         };
-        vscode.enable = false;
+        vscode.profiles.default.enable = false;
     };
     stylix = {
         enable = true;
@@ -18,5 +18,6 @@
             flatpakSupport.enable = true;
             fonts.enable = true;
         };
+        targets.vscode.enable = false;
     };
 }
