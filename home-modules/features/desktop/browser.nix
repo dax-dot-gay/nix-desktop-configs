@@ -45,6 +45,7 @@
                         "ublock-quick-fixes"
                     ];
                 };
+                force = true;
             };
         };
     };

@@ -1,4 +1,9 @@
-{ lib, hostname, ... }:
+{
+    lib,
+    hostname,
+    nur,
+    ...
+}:
 {
     imports = [
         ./boot.nix
@@ -12,5 +17,11 @@
     ++ (lib.optional (builtins.pathExists ../../machines/${hostname}/hardware-configuration.nix) ../../machines/${hostname}/hardware-configuration.nix);
 
     system.stateVersion = "25.11";
-    nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+    ];
+    nixpkgs.overlays = [
+        nur.overlays.default
+    ];
 }
