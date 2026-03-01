@@ -10,13 +10,8 @@
     stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-        autoEnable = false;
-        targets = {
-            gtk.enable = true;
-            plymouth.enable = true;
-        };
-        icons.enable = true;
-        icons.package = pkgs.catppuccin-papirus-folders;
+        autoEnable = true;
     };
     boot.plymouth.enable = true;
+    gtk.iconTheme = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
 }
