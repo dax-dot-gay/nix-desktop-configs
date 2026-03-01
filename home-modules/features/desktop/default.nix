@@ -3,6 +3,7 @@
     catppuccin,
     dms-plugin-registry,
     niri-nix,
+    nix-monitor,
     pkgs,
     ...
 }:
@@ -12,6 +13,7 @@
         dms.homeModules.dank-material-shell
         dms-plugin-registry.modules.default
         niri-nix.homeModules.default
+        nix-monitor.homeManagerModules.default
         ./style
         ./dms.nix
         ./development
