@@ -1,4 +1,4 @@
-{ hostname, pkgs, ... }:
+{ hostname, pkgs, lib, ... }:
 {
     programs.dank-material-shell = {
         enable = true;
@@ -35,4 +35,5 @@
         ];
         nixpkgsChannel = "nixos-unstable";
     };
+    programs.khal.enable = lib.mkForce false;
 }
