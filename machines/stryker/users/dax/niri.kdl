@@ -318,6 +318,7 @@ environment {
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 //spawn-sh-at-startup "awww img /home/itec/.config/assets/wallpaper.gif --transition-duration 0"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
+spawn-sh-at-startup "vicinae server"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
