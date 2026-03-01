@@ -13,10 +13,5 @@
             showThirdPartyPlugins = true;
             weatherLocation = "Rochester, NY";
         };
-        niri = {
-            enableKeybinds = false;
-            enableSpawn = false;
-            includes.enable = false;
-        };
     };
 }

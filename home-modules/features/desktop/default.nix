@@ -10,7 +10,6 @@
     imports = [
         catppuccin.homeModules.catppuccin
         dms.homeModules.dank-material-shell
-        dms.homeModules.niri
         dms-plugin-registry.modules.default
         niri-nix.homeModules.default
         ./style
