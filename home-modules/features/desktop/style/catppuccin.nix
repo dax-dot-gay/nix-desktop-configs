@@ -20,4 +20,5 @@
         };
         targets.vscode.enable = false;
     };
+    gtk.iconTheme = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
 }

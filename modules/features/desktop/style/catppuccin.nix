@@ -13,5 +13,4 @@
         autoEnable = true;
     };
     boot.plymouth.enable = true;
-    gtk.iconTheme = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
 }
