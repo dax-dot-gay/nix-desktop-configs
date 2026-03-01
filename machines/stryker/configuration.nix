@@ -2,7 +2,7 @@
 {
     flake.system-configuration = {
         enable = true;
-        root_disk = "/dev/vda";
+        root_disk = "/dev/nvme0n1";
         users = {
             dax = {
                 superuser = true;
