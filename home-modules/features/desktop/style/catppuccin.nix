@@ -1,16 +1,17 @@
-{ ... }:
+{ pkgs, ... }:
 {
     catppuccin = {
         enable = true;
         flavor = "mocha";
         accent = "mauve";
         gtk = {
-            icon.enable = true;
+            icon.enable = false;
         };
         vscode.enable = false;
     };
     stylix = {
         enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
         autoEnable = false;
         targets.gtk = {
             enable = true;
