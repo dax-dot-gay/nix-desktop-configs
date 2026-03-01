@@ -1,4 +1,4 @@
-{ hostname, pkgs, ... }:
+{ pkgs, ... }:
 {
     programs.dank-material-shell = {
         enable = true;
@@ -25,14 +25,4 @@
         pavucontrol
         socat
     ];
-
-    programs.nix-monitor = {
-        enable = true;
-        rebuildCommand = [
-            "zsh"
-            "-c"
-            "pkexec nixos-rebuild switch --flake /etc/nixos/#${hostname} 2>&1"
-        ];
-        nixpkgsChannel = "nixos-unstable";
-    };
 }
