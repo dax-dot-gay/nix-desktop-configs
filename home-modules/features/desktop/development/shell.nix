@@ -83,6 +83,9 @@
                 email = "git@dax.gay";
                 name = "Dax Harris";
             };
+            safe.directory = [
+                "/etc/nixos"  
+            ];
         };
     };
 }

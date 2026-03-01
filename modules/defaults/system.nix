@@ -305,6 +305,7 @@ in
                 chown ${user.username}:${user.username} /home/${user.username}/.config
                 ln -s /etc/nixos /home/${user.username}/.config/nixos-config
                 chown root:nixos-config /home/${user.username}/.config/nixos-config
+                chmod -R 777 /home/${user.username}/.config/nixos-config
                 echo "---"
                 echo
             '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
