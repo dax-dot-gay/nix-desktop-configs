@@ -364,11 +364,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772571303,
-        "narHash": "sha256-p2uO6Gv8iy7XY5vOkJx/QYBsyUkVgdYLr3Yax43Z0K4=",
+        "lastModified": 1772571831,
+        "narHash": "sha256-E3tLxkLoJKAj8xZmk2qKpFQOPX0HWjrSgcfs3wZmHEY=",
         "owner": "dax-dot-gay",
         "repo": "nirix",
-        "rev": "e12609f40d6d2d2fb4e6de1b979d58e557be8b8c",
+        "rev": "bda16a96912bacf536b186c77ab56f37f1758d1b",
         "type": "github"
       },
       "original": {
