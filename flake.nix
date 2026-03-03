@@ -15,8 +15,8 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        niri-nix = {
-            url = "git+https://codeberg.org/BANanaD3V/niri-nix";
+        nirix = {
+            url = "github:dax-dot-gay/nirix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         dms = {

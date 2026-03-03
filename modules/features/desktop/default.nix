@@ -2,7 +2,7 @@
     dms,
     catppuccin,
     nix-monitor,
-    niri-nix,
+    nirix,
     stylix,
     ...
 }:
@@ -12,7 +12,7 @@
         dms.nixosModules.greeter
         catppuccin.nixosModules.catppuccin
         nix-monitor.nixosModules.default
-        niri-nix.nixosModules.default
+        nirix.nixosModules.default
         stylix.nixosModules.stylix
         ./style
         ./dms.nix

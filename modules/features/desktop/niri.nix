@@ -1,4 +1,4 @@
-{ pkgs, niri-wip, ... }:
+{ pkgs, ... }:
 {
     environment.variables = {
         NIXOS_OZONE_WL = "1";
@@ -16,7 +16,7 @@
 
     programs.niri = {
         enable = true;
-        package = niri-wip.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+        variant = "stable";
         withXDG = true;
         useNautilus = false;
     };
