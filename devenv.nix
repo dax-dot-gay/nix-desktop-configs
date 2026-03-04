@@ -38,9 +38,8 @@
             HOSTNAME=$1
             TARGET_IP=$2
             BRANCH=$(git rev-parse --abbrev-ref HEAD)
-            REMOTE=$(git remote get-url origin)
 
-            git clone --branch $BRANCH $REMOTE "machines/$HOSTNAME/.machine-secrets/etc/nixos"
+            git clone --branch $BRANCH "https://github.com/dax-dot-gay/nix-desktop-configs.git" "machines/$HOSTNAME/.machine-secrets/etc/nixos"
             chmod -R 770 "machines/$HOSTNAME/.machine-secrets/etc/nixos"
 
             cd $(git rev-parse --show-toplevel)
