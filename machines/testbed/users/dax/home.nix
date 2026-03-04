@@ -70,6 +70,13 @@
                 "vicinae server"
             ];
             screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+            window-rules = {
+                "auto-float" = {
+                    match = {
+                        
+                    };
+                };
+            };
         };
     };
 }
