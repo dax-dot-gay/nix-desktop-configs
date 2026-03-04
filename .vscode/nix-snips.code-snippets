@@ -35,5 +35,10 @@
             "   inputs.nixpkgs.follows = \"nixpkgs\";",
             "};"
         ]
+    },
+    "Niri Bind": {
+        "scope": "nix",
+        "prefix": "mo",
+        "body": "\"Mod+$1\".action.$2 = {};$0"
     }
 }
