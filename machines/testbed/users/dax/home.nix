@@ -73,7 +73,12 @@
             window-rules = {
                 "auto-float" = {
                     match = {
-                        
+                        ghostty = {
+                            app-id = "com.mitchellh.ghostty";
+                        };
+                        nemo = {
+                            app-id = "nemo";
+                        };
                     };
                 };
             };
