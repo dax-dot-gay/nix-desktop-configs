@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
     wayland.windowManager.niri = {
         enable = true;
@@ -14,7 +14,7 @@
                     max-scroll-amount = "0%";
                 };
             };
-            gestures.hot-corners = [];
+            gestures.hot-corners = [ ];
             prefer-no-csd = true;
             outputs = {
                 "DP-3" = {
@@ -50,11 +50,13 @@
                 gaps = 4;
                 center-focused-column = "never";
                 preset-column-widths = [
-                    {proportion = 0.33333;}
-                    {proportion = 0.5;}
-                    {proportion = 0.66667;}
+                    { proportion = 0.33333; }
+                    { proportion = 0.5; }
+                    { proportion = 0.66667; }
                 ];
-                default-column-width = {proportion = 0.5;};
+                default-column-width = {
+                    proportion = 0.5;
+                };
                 focus-ring.enable = false;
                 border.enable = false;
                 shadow.enable = false;
@@ -71,13 +73,34 @@
             ];
             screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
             window-rules = {
-                "auto-float" = {
-                    match = {
-                        ghostty = {
-                            app-id = "com.mitchellh.ghostty";
-                        };
-                        nemo = {
-                            app-id = "nemo";
+                floating-windows = {
+                    match = [
+                        { app-id = "com.mitchellh.ghostty"; }
+                        { app-id = "nemo"; }
+                        { app-id = "syncthingtray-qt6"; }
+                        { app-id = "KeePassXC"; }
+                        { app-id = "harmonymusic"; }
+                        { app-id = "feishin"; }
+                        { app-id = "xdg-desktop-portal-gtk"; }
+                        {
+                            app-id = "org.mozilla.Thunderbird";
+                            title = "Message Filters";
+                        }
+                    ];
+                    on-open = {
+                        open-on-output = "DP-2";
+                        open-floating = true;
+                        default-column-width = {proportion = 0.6;};
+                        default-window-height = {proportion = 0.6;};
+                        open-focused = true;
+                    };
+
+                    dynamic = {
+                        border = {
+                            enable = true;
+                            width = 2;
+                            active-color = "#cba6f7";
+                            inactive-color = "#cba6f7aa";
                         };
                     };
                 };
