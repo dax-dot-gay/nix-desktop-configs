@@ -19,9 +19,5 @@ with lib;
             type = types.listOf types.str;
             description = "List of groups this user belongs to (set automatically)";
         };
-        systemConfigurationAllowed = mkOption {
-            type = types.bool;
-            description = "Whether this user can modify the system configuration (set automatically)";
-        };
     };
 }

@@ -25,16 +25,11 @@ let
                     default = false;
                     description = "Whether this user should be able to sudo";
                 };
-                allowSystemConfiguration = mkOption {
+                provision-ssh = mkOption {
                     type = types.bool;
                     default = false;
                     description = ''
-                        Whether this user should be set up to be able to modify the system configuration & associated repository.
-                        This does a few things:
-                        - Grants access to and enables my primary SSH key (secrets."ssh/keys/dax/..") for this user
-                        - Adds the user to the "nixos-config" group
-                        - Links the system configuration into ~/.config/nixos-config
-                        - Implies `superuser`
+                        Grants access to and enables my primary SSH key (secrets."ssh/keys/dax/..") for this user
                     '';
                 };
                 shell = mkOption {
@@ -46,13 +41,6 @@ let
                     type = types.listOf types.str;
                     default = [ ];
                     description = "Extra groups to add (does not create groups)";
-                };
-                _actual_superuser = mkOption {
-                    type = types.bool;
-                    default =
-                        cfg.users.${config._module.args.name}.superuser
-                        || cfg.users.${config._module.args.name}.allowSystemConfiguration;
-                    description = "Merges superuser and allowSystemConfiguration to imply superuser. DO NOT SET.";
                 };
             };
         }
@@ -247,20 +235,19 @@ in
         flake.secrets.global."ssh/authorized_keys/dax" = { };
         flake.secrets.global."ssh/keys/dax/public" = {
             owner = "root";
-            group = "nixos-config";
+            group = "root";
             mode = "660";
         };
         flake.secrets.global."ssh/keys/dax/private" = {
             owner = "root";
-            group = "nixos-config";
+            group = "root";
             mode = "660";
         };
         users.users = lib.mapAttrs (name: value: {
             name = value.username;
             group = value.username;
             extraGroups =
-                (optional value._actual_superuser "wheel")
-                ++ (optional value.allowSystemConfiguration "nixos-config")
+                (optional value.superuser "wheel")
                 ++ value.groups;
             hashedPasswordFile = config.sops.secrets."users/${value.username}/password".path;
             createHome = true;
@@ -270,11 +257,7 @@ in
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAiAboVZPRR/NJirG0zeB3SBdOYzJ1n3/kYKKRDGu3wq dax@dax.gay"
             ];
         }) cfg.users;
-        users.groups = (lib.mapAttrs (name: value: { name = value.username; }) cfg.users) // {
-            nixos-config = {
-                gid = 101;
-            };
-        };
+        users.groups = lib.mapAttrs (name: value: { name = value.username; }) cfg.users;
         users.defaultUserShell = cfg.defaultShell;
 
         flake.secrets.local = listToAttrs (
@@ -287,7 +270,7 @@ in
         );
         system.stateVersion = cfg.stateVersion;
 
-        systemd.services.allow-system-configuration = {
+        systemd.services.provision-ssh-keys = {
             enable = true;
             after = ["network.target"];
             wantedBy = ["default.target"];
@@ -302,16 +285,11 @@ in
                     chmod 600 /home/${user.username}/.ssh/id_ed25519
                     chmod 644 /home/${user.username}/.ssh/id_ed25519.pub
                     chown -R ${user.username}:${user.username} /home/${user.username}/.ssh
-                    mkdir -p /home/${user.username}/.config
-                    chown ${user.username}:${user.username} /home/${user.username}/.config
-                    ln -s /etc/nixos /home/${user.username}/.config/nixos-config
-                    chown root:nixos-config /home/${user.username}/.config/nixos-config
-                    chmod -R 777 /home/${user.username}/.config/nixos-config
                     touch /home/${user.username}/.initialized
                     echo "---"
                     echo
                 fi
-            '') (attrValues (filterAttrs (name: value: value.allowSystemConfiguration) cfg.users)));
+            '') (attrValues (filterAttrs (name: value: value.provision-ssh) cfg.users)));
             serviceConfig = { 
                 Type = "oneshot";
                 DynamicUser = "no";
@@ -333,15 +311,13 @@ in
                     ];
                     homeflake.info = {
                         username = value.username;
-                        superuser = value._actual_superuser;
+                        superuser = value.superuser;
                         shell = if isNull value.shell then cfg.defaultShell else value.shell;
                         groups = [
                             value.username
                         ]
-                        ++ (optional value._actual_superuser "wheel")
-                        ++ (optional value.allowSystemConfiguration "nixos-config")
+                        ++ (optional value.superuser "wheel")
                         ++ value.groups;
-                        systemConfigurationAllowed = value.allowSystemConfiguration;
                     };
                 }
             ) cfg.users;

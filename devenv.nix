@@ -46,7 +46,7 @@
             cd $(git rev-parse --show-toplevel)
             nixos-anywhere \
                 --extra-files "machines/$HOSTNAME/.machine-secrets" \
-                --chown /etc/nixos 0:101 \
+                --chown /etc/nixos 0:0 \
                 --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP \
                 --generate-hardware-config nixos-facter machines/$HOSTNAME/facter.json
 
