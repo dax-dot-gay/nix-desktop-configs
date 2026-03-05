@@ -1,7 +1,7 @@
-{ lib, pkgs, comin, ... }:
+{ lib, pkgs, ... }:
 {
     environment.systemPackages = [
-        pkgs.libnotify pkgs.jq pkgs.jq-zsh-plugin pkgs.polkit
+        pkgs.libnotify pkgs.jq
     ];
     services.comin = {
         enable = true;
