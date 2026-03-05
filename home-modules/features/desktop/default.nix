@@ -21,7 +21,7 @@
         ./niri
     ];
     home.packages = with pkgs; [
-        nemo
+        nemo-with-extensions
         nemo-fileroller
         nemo-preview
     ];
@@ -33,6 +33,8 @@
         systemd.enable = true;
         systemd.autoStart = true;
     };
-    home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
-    gtk.cursorTheme.name = "Vanilla-DMZ";
+    gtk.cursorTheme = {
+        name = "Rewaita";
+        package = pkgs.rewaita;
+    }
 }
