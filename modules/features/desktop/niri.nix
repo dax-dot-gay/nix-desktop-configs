@@ -13,6 +13,7 @@
         gamescope
         xwayland-satellite
         gnome-keyring
+        dconf-editor
     ];
 
     programs.niri = {

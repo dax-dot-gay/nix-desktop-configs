@@ -38,7 +38,7 @@
                 ];
                 on-open = {
                     open-maximized = true;
-                    open-on-output = "DP-3";
+                    open-on-output = "DP-2";
                 };
             };
             floating-windows = {
@@ -56,7 +56,7 @@
                     }
                 ];
                 on-open = {
-                    open-on-output = "DP-2";
+                    open-on-output = "DP-1";
                     open-floating = true;
                     default-column-width = {
                         proportion = 0.6;
