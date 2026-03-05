@@ -42,6 +42,7 @@
                             if [ $RESPONSE == "update" ]; then
                                 pkexec comin confirmation accept
                             fi
+                        fi
                     fi
                 done
             fi
