@@ -14,7 +14,7 @@
     programs.nix-monitor = {
         enable = true;
         rebuildCommand = [ "/usr/bin/env" "zsh" "-c" "comin fetch" ];
-        generationsCommand = [ "/usr/bin/env" "zsh" "-c" "echo $(echo -E \"$(comin status --json)\" | jq '.store.generations | length')" ];
+        generationsCommand = [ "/usr/bin/env" "zsh" "-c" "cat /run/sysinfo/count-generations" ];
         gcCommand = ["/usr/bin/env" "zsh" "-c" "pkexec nix-collect-garbage -d"];
         nixpkgsChannel = "nixos-unstable";
     };
