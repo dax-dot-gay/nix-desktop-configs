@@ -50,7 +50,6 @@
         serviceConfig = {
             Type = "oneshot";
             User = "root";
-            RemainAfterExit = true;
         };
         path = ["/run/current-system/sw"];
     };
