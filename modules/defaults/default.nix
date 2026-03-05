@@ -22,6 +22,7 @@
         "nix-command"
         "flakes"
     ];
+    nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
         nur.overlays.default
     ];
