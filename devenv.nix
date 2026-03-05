@@ -37,19 +37,13 @@
 
             HOSTNAME=$1
             TARGET_IP=$2
-            BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-            git clone --branch $BRANCH "https://github.com/dax-dot-gay/nix-desktop-configs.git" "machines/$HOSTNAME/.machine-secrets/etc/nixos"
-            chmod -R 770 "machines/$HOSTNAME/.machine-secrets/etc/nixos"
 
             cd $(git rev-parse --show-toplevel)
             nixos-anywhere \
                 --extra-files "machines/$HOSTNAME/.machine-secrets" \
-                --chown /etc/nixos 0:0 \
                 --flake ".#$HOSTNAME" --target-host nixos@$TARGET_IP \
                 --generate-hardware-config nixos-facter machines/$HOSTNAME/facter.json
 
-            rm -rf "machines/$HOSTNAME/.machine-secrets/etc/nixos"
             ssh-keygen -R $TARGET_IP
         '';
         new-machine.exec = ''

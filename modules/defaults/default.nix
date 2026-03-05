@@ -12,6 +12,7 @@
         ./network.nix
         ./openssh.nix
         ./shell.nix
+        ./comin.nix
         ../../machines/${hostname}/auto.nix
     ];
 
