@@ -53,6 +53,7 @@
                         "ublock-quick-fixes"
                     ];
                 };
+                settings."contact@maxhu.dev".settings = builtins.fromJSON (builtins.readFile ./mtab.json);
                 force = true;
             };
             userChrome = ''

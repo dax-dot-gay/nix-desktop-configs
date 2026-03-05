@@ -17,7 +17,7 @@
         ./style
         ./dms.nix
         ./development
-        ./browser.nix
+        ./browser
         ./niri
         ./apps.nix
     ];
