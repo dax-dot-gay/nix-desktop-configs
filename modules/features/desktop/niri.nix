@@ -14,7 +14,6 @@
         xwayland-satellite
         gnome-keyring
         dconf-editor
-        adwaita-icon-theme
     ];
 
     programs.niri = {

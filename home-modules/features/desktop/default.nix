@@ -33,8 +33,8 @@
         systemd.enable = true;
         systemd.autoStart = true;
     };
+    home.file.".icons/default".source = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
     gtk.cursorTheme = {
-        name = "rewaita";
-        package = pkgs.rewaita;
+        name = "Adwaita";
     };
 }
