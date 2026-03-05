@@ -20,6 +20,7 @@ let
                     SCRIPT="${pkgs.writeShellScriptBin "sysinfo-executer-${name}" script}/bin/sysinfo-executer-${name}"
                     OUTPUT=$($SCRIPT)
                     echo "$OUTPUT" > /run/sysinfo/${name}
+                    chmod 644 /run/sysinfo/${name}
                 '';
                 path = ["/run/current-system/sw"];
                 serviceConfig = {
