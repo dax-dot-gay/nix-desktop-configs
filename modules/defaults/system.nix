@@ -83,6 +83,11 @@ in
             type = types.str;
             description = "Nix channel version";
         };
+        timezone = mkOption {
+            type = types.str;
+            description = "System timezone";
+            default = "America/New_York";
+        };
     };
 
     config = mkIf cfg.enable {
@@ -269,6 +274,7 @@ in
             }) cfg.users
         );
         system.stateVersion = cfg.stateVersion;
+        time.timeZone = cfg.timezone;
 
         systemd.services.provision-ssh-keys = {
             enable = true;

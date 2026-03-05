@@ -30,12 +30,12 @@ let
         };
 in
 {
-    systemd = {
-        tmpfiles.rules = [
+    systemd = (lib.mkMerge [
+        {
+            tmpfiles.rules = [
             "d /run/sysinfo 0644 root root"
         ];
-    }
-    // (lib.mkMerge [
+        }
         (register {
             name = "count-generations";
             script = "nix-env --list-generations --profile /nix/var/nix/profiles/system-profiles/comin | wc -l";
