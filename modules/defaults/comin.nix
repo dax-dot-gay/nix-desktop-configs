@@ -2,11 +2,15 @@
 {
     environment.systemPackages = [
         pkgs.libnotify pkgs.jq pkgs.jq-zsh-plugin
+        (pkgs.writeShellScriptBin "cupdate" ''
+            comin fetch
+            ghostty +new-window -e journalctl -xefu comin
+        '')
     ];
     services.comin = {
         enable = true;
         deployConfirmer = {
-            mode = lib.mkDefault "manual";
+            mode = lib.mkDefault "auto";
         };
         desktop = {
             enable = true;
