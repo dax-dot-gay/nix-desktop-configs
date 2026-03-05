@@ -21,15 +21,7 @@
         withXDG = true;
         useNautilus = false;
     };
-    xdg.portal.config = {
-        common = {
-            default = [
-                "gtk"
-                "gnome"
-            ];
-            "org.freedesktop.impl.portal.Secret" = [
-                "gnome-keyring"
-            ];
-        };
+    xdg.portal.config.niri = {
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
     };
 }
