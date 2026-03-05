@@ -60,6 +60,14 @@ in
                 "editor.formatOnSave" = true;
                 "editor.formatOnPaste" = true;
                 "editor.formatOnSaveMode" = "modificationsIfAvailable";
+                "nix.serverPath" = "nixd";
+                "nix.serverSettings" = {
+                    nixd = {
+                        formatting = {
+                            command = ["nixfmt"];
+                        };
+                    };
+                };
             };
         };
         
