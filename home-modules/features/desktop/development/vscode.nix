@@ -80,6 +80,8 @@ in
                 "[nix]" = {
                     "editor.tabSize" = 4;
                 };
+                "editor.fontFamily" = "'Fira Code', monospace";
+                "terminal.integrated.fontFamily" = "'Fira Code', monospace";
             };
         };
         
