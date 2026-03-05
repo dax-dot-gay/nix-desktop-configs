@@ -29,6 +29,7 @@
                 "browser.theme.content-theme" = 0;
                 "browser.theme.toolbar-theme" = 0;
                 "extensions.autoDisableScopes" = 0;
+                "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             };
             extensions = {
                 packages = with pkgs.nur.repos.rycee.firefox-addons; [
