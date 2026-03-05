@@ -68,6 +68,18 @@ in
                         };
                     };
                 };
+                "[javascript]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[typescript]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[json]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[nix]" = {
+                    "editor.tabSize" = 4;
+                };
             };
         };
         
