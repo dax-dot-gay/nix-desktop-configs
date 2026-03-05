@@ -1,4 +1,5 @@
 {
+    pkgs,
     dms,
     catppuccin,
     nix-monitor,
@@ -17,5 +18,8 @@
         ./style
         ./dms.nix
         ./niri.nix
+    ];
+    environment.systemPackages = [
+        pkgs.keepassxc
     ];
 }
