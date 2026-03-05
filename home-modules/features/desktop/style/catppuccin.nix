@@ -11,6 +11,8 @@
         };
         targets.vscode.enable = false;
         targets.librewolf.profileNames = ["default"];
+        targets.librewolf.colors.enable = false;
+        targets.librewolf.colorTheme.enable = true;
     };
     gtk.iconTheme.package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
     gtk.iconTheme.name = "Papirus-Dark";
