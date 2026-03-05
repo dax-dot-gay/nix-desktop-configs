@@ -36,5 +36,5 @@
     gtk.cursorTheme = {
         name = "Rewaita";
         package = pkgs.rewaita;
-    }
+    };
 }
