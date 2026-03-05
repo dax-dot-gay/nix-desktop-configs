@@ -4001,7 +4001,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 101
+            "address": 56
           },
           {
             "type": "io",
@@ -4211,47 +4211,6 @@
     "network_interface": [
       {
         "index": 107,
-        "attached_to": 58,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/enp7s0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:00.0/0000:07:00.0",
-        "unix_device_names": [
-          "enp7s0"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 57
-          },
-          {
-            "type": "phwaddr",
-            "address": 57
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
-        ]
-      },
-      {
-        "index": 108,
         "attached_to": 56,
         "class_list": [
           "network_interface"
@@ -4292,7 +4251,70 @@
         ]
       },
       {
+        "index": 108,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
         "index": 109,
+        "attached_to": 58,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/enp7s0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:00.0/0000:07:00.0",
+        "unix_device_names": [
+          "enp7s0"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 57
+          },
+          {
+            "type": "phwaddr",
+            "address": 57
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
+        ]
+      },
+      {
+        "index": 110,
         "attached_to": 40,
         "class_list": [
           "network_interface"
@@ -4316,7 +4338,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 101
+            "address": 56
           },
           {
             "type": "phwaddr",
@@ -4330,28 +4352,6 @@
         ],
         "driver_modules": [
           "rtw89_8922ae"
-        ]
-      },
-      {
-        "index": 110,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -5009,9 +5009,6 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:10:00.0/usb1/1-5/1-5:1.1",
         "sysfs_bus_id": "1-5:1.1",
         "unix_device_names": [
-          "/dev/input/by-id/usb-Logitech_USB_Keyboard-event-if01",
-          "/dev/input/by-path/pci-0000:10:00.0-usb-0:5:1.1-event",
-          "/dev/input/by-path/pci-0000:10:00.0-usbv2-0:5:1.1-event",
           "/dev/input/event1"
         ],
         "resources": [
@@ -6241,9 +6238,9 @@
       "product": "B850 AORUS ELITE WIFI7",
       "version": "Default string-CF-WCP-ADO",
       "wake_up": {
-        "hex": "0002",
-        "name": "Unknown",
-        "value": 2
+        "hex": "0001",
+        "name": "Other",
+        "value": 1
       }
     }
   }
