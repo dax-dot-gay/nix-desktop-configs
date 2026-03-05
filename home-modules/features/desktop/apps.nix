@@ -2,7 +2,7 @@
 {
     home.packages = with pkgs; [
         feishin
-        cinny-desktop
+        fluffychat
         equibop
         zoom-us
         delfin
