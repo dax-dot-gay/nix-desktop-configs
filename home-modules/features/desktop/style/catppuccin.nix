@@ -13,6 +13,7 @@
         targets.librewolf.profileNames = ["default"];
         targets.librewolf.colors.enable = false;
         targets.librewolf.colorTheme.enable = true;
+        targets.dank-material-shell.enable = false;
     };
     gtk.iconTheme.package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
     gtk.iconTheme.name = "Papirus-Dark";
