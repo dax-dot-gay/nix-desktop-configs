@@ -14,7 +14,7 @@
                     max-scroll-amount = "0%";
                 };
             };
-            gestures.hot-corners = [ ];
+            gestures.hot-corners = [ "top-left" ];
             prefer-no-csd = true;
             outputs = {
                 "DP-3" = {
