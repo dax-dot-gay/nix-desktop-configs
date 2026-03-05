@@ -7,7 +7,8 @@ in
     programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
-        profiles.default.extensions =
+        profiles.default = {
+            extensions =
             (with extensions.open-vsx-release; [
                 signageos.signageos-vscode-sops
                 gavinleroy.argus
@@ -47,5 +48,16 @@ in
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
             ]);
+            userSettings = {
+                "catppuccin-noctis-icons.hidesExplorerArrows" = false;
+                "git.enableSmartCommit" = true;
+                "git.confirmSync" = false;
+                "git.autofetch" = true;
+                "nix.enableLanguageServer" = true;
+                "workbench.colorTheme" = "Catppuccin Noctis Mocha";
+                "workbench.iconTheme" = "catppuccin noctis icons"
+            }
+        };
+        
     };
 }
