@@ -56,7 +56,7 @@ in
                 "nix.enableLanguageServer" = true;
                 "workbench.colorTheme" = "Catppuccin Noctis Mocha";
                 "workbench.iconTheme" = "catppuccin noctis icons";
-            }
+            };
         };
         
     };
