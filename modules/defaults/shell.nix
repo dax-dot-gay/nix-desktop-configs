@@ -37,5 +37,11 @@
     programs.zsh = {
         enable = true;
     };
-    fonts.packages = [pkgs.nerd-fonts];
+    fonts.packages = with pkgs; [
+        nerd-fonts.fira-code
+        nerd-fonts.fira-mono
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.noto
+        liberation_ttf
+    ];
 }
