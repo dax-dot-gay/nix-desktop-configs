@@ -25,9 +25,10 @@
         common = {
             default = [
                 "gtk"
+                "gnome"
             ];
             "org.freedesktop.impl.portal.Secret" = [
-                "gnome-keyrong"
+                "gnome-keyring"
             ];
         };
     };
