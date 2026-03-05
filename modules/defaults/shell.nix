@@ -26,6 +26,7 @@
         bat
         lsd
         polkit
+        nerd-fonts
     ];
     programs.git = {
         enable = true;

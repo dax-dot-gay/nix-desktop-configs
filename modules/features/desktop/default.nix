@@ -17,5 +17,6 @@
         ./style
         ./dms.nix
         ./niri.nix
+        ./syncthing.nix
     ];
 }
