@@ -33,4 +33,6 @@
         systemd.enable = true;
         systemd.autoStart = true;
     };
+    home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+    gtk.cursorTheme.name = "Vanilla-DMZ";
 }
