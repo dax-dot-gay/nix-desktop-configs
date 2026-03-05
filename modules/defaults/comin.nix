@@ -32,12 +32,12 @@
         wantedBy = ["default.target"];
         wants = ["multi-user.target"];
         script = ''
-            if [ $(echo "$(${comin.packages."x86_64-linux".default} status --json)" | ${pkgs.jq} .deploy_confirmer.submitted) != '""' ]; then
-                for id in $(loginctl list-sessions -j | ${pkgs.jq} -r '.[] | .session') ; do
+            if [ $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) != '""' ]; then
+                for id in $(loginctl list-sessions -j | jq -r '.[] | .session') ; do
                     if [[ $(loginctl show-session $id --property=Type) =~ (wayland|x11) ]] ; then
                         USER=$(loginctl show-session $id --property=Name --value)
-                        if [ ! -e /home/$USER/.local/share/comin-deployment ] || [ $(cat /home/$USER/.local/share/comin-deployment) != $(echo "$(${comin.packages."x86_64-linux".default} status --json)" | ${pkgs.jq} .deploy_confirmer.submitted) ]; then
-                            echo $(echo "$(${comin.packages."x86_64-linux".default} status --json)" | ${pkgs.jq} .deploy_confirmer.submitted) > /home/$USER/.local/share/comin-deployment
+                        if [ ! -e /home/$USER/.local/share/comin-deployment ] || [ ! $(cat /home/$USER/.local/share/comin-deployment) == $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) ]; then
+                            echo $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) > /home/$USER/.local/share/comin-deployment
                             RESPONSE=$(sudo -u $USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u $USER)/bus notify-send --urgency=critical --app-name="Comin" --action=update=Update "Update Available!" "A deployment is available for deployment. To validate the build, run <sudo journalctl -xeu comin>")
                             if [ $RESPONSE == "update" ]; then
                                 pkexec comin confirmation accept
