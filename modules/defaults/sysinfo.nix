@@ -17,7 +17,7 @@ let
             };
             services."sysinfo-${name}" = {
                 script = ''
-                    SCRIPT="${pkgs.writeShellScriptBin "sysinfo-executer-${name}" script}"
+                    SCRIPT="${pkgs.writeShellScriptBin "sysinfo-executer-${name}" script}/bin/sysinfo-executer-${name}"
                     OUTPUT=$($SCRIPT)
                     echo "$OUTPUT" > /run/sysinfo/${name}
                 '';
