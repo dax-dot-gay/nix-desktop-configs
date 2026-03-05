@@ -80,8 +80,8 @@ in
                 "[nix]" = {
                     "editor.tabSize" = 4;
                 };
-                "editor.fontFamily" = "'Fira Code Nerd Font', monospace";
-                "terminal.integrated.fontFamily" = "'Fira Code Nerd Font', monospace";
+                "editor.fontFamily" = "'Fira Code Nerd Font', sans-serif";
+                "terminal.integrated.fontFamily" = "'Fira Code Nerd Font', sans-serif";
             };
         };
         
