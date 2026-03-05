@@ -69,6 +69,7 @@
     home.packages = with pkgs; [
         devenv
         nixd
+        nixfmt
     ];
     programs.direnv = {
         enable = true;

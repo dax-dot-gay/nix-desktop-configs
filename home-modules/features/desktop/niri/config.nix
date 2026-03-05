@@ -54,6 +54,8 @@
                     match = [
                         { app-id = "floorp"; }
                         { app-id = "org.mozilla.Thunderbird"; }
+                        { app-id = "librewolf"; }
+                        { app-id = "codium"; }
                     ];
                     exclude = [
                         { title = "Message Filters"; }

@@ -56,6 +56,10 @@ in
                 "nix.enableLanguageServer" = true;
                 "workbench.colorTheme" = "Catppuccin Noctis Mocha";
                 "workbench.iconTheme" = "catppuccin noctis icons";
+                "editor.tabSize" = 4;
+                "editor.formatOnSave" = true;
+                "editor.formatOnPaste" = true;
+                "editor.formatOnSaveMode" = "modificationsIfAvailable";
             };
         };
         

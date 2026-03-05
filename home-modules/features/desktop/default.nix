@@ -19,6 +19,7 @@
         ./development
         ./browser.nix
         ./niri
+        ./apps.nix
     ];
     home.packages = with pkgs; [
         nemo-with-extensions
