@@ -9,6 +9,10 @@
     };
     environment.systemPackages = [
       pkgs.pwvucontrol
+      pkgs.vlc
+      pkgs.gimp
+      pkgs.krita
+      pkgs.swayimg
     ];
     services.playerctld = {
       enable = true;

@@ -20,4 +20,5 @@
         ];
         nixpkgsChannel = "nixos-unstable";
     };
+    home.file.".config/DankMaterialShell/themes/catppuccin/theme.json".source = ./catppuccin.json;
 }
