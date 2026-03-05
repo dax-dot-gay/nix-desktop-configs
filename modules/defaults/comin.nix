@@ -1,5 +1,6 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
+    environment.systemPackages = [pkgs.libnotify];
     services.comin = {
         enable = true;
         deployConfirmer = {
