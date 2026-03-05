@@ -19,7 +19,7 @@ let
                 script = ''
                     SCRIPT="${pkgs.writeShellScriptBin "sysinfo-executer-${name}" script}/bin/sysinfo-executer-${name}"
                     OUTPUT=$($SCRIPT)
-                    echo "$OUTPUT" > /run/sysinfo/${name}
+                    echo "$OUTPUT" > /tmp/sysinfo/${name}
                 '';
                 path = ["/run/current-system/sw"];
                 serviceConfig = {
@@ -32,7 +32,7 @@ in
 {
     systemd = {
         tmpfiles.rules = [
-            "/run/sysinfo 0644 root root"
+            "/tmp/sysinfo 0644 root root"
         ];
     }
     // (lib.mkMerge [
