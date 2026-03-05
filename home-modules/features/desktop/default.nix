@@ -38,4 +38,5 @@
     gtk.cursorTheme = {
         name = "Adwaita";
     };
+    xdg.autostart.enable = true;
 }
