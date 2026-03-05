@@ -34,7 +34,7 @@
         systemd.autoStart = true;
     };
     gtk.cursorTheme = {
-        name = "Rewaita";
+        name = "rewaita";
         package = pkgs.rewaita;
     };
 }
