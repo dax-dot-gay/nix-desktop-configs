@@ -8,4 +8,5 @@
         gnupg
         libfido2
     ];
+    services.pcscd.enable = true;
 }
