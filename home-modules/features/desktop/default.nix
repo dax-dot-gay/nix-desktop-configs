@@ -30,5 +30,7 @@
         settings = {
             faviconService = "twenty";
         };
+        systemd.enable = true;
+        systemd.autoStart = true;
     };
 }
