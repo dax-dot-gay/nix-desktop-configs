@@ -55,6 +55,10 @@
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        comin = {
+            url = "github:nlewo/comin";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
@@ -96,6 +100,7 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
+                        inputs.comin.nixosModules.comin
                     ]
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
