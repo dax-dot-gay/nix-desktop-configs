@@ -32,7 +32,7 @@
         wantedBy = ["default.target"];
         wants = ["multi-user.target"];
         script = ''
-            if [ $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) != '""' ]; then
+            if [ ! $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) == '""' ]; then
                 for id in $(loginctl list-sessions -j | jq -r '.[] | .session') ; do
                     if [[ $(loginctl show-session $id --property=Type) =~ (wayland|x11) ]] ; then
                         USER=$(loginctl show-session $id --property=Name --value)
@@ -52,5 +52,6 @@
             User = "root";
             RemainAfterExit = true;
         };
+        path = ["/run/current-system/sw"];
     };
 }
