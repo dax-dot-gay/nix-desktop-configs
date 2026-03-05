@@ -21,7 +21,7 @@ let
                     OUTPUT=$($SCRIPT)
                     echo "$OUTPUT" > /run/sysinfo/${name}
                 '';
-                path = "/run/current-system/sw";
+                path = ["/run/current-system/sw"];
                 serviceConfig = {
                     Type = "oneshot";
                     User = "root";
