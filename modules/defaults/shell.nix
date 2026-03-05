@@ -26,7 +26,6 @@
         bat
         lsd
         polkit
-        nerd-fonts
     ];
     programs.git = {
         enable = true;
@@ -38,4 +37,5 @@
     programs.zsh = {
         enable = true;
     };
+    fonts.packages = [pkgs.nerd-fonts];
 }
