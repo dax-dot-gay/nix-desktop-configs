@@ -45,6 +45,7 @@
                     catppuccin-mocha-mauve
                     steam-database
                     mtab
+                    pkgs."2fas-two-factor-authentication"
                 ];
                 settings."uBlock0@raymondhill.net".settings = {
                     selectedFilterLists = [
