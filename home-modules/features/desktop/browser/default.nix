@@ -30,6 +30,7 @@
                 "browser.theme.toolbar-theme" = 0;
                 "extensions.autoDisableScopes" = 0;
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+                "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
             };
             extensions = {
                 packages = with pkgs.nur.repos.rycee.firefox-addons; [
