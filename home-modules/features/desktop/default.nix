@@ -1,11 +1,33 @@
-{ hm_args, ... }:
-let
-    inputs = hm_args.inputs;
-in
+{
+    dms,
+    catppuccin,
+    dms-plugin-registry,
+    nirix,
+    nix-monitor,
+    pkgs,
+    ...
+}:
 {
     imports = [
-        inputs.catppuccin.homeModules.catppuccin
-        inputs.dms.homeModules.dank-material-shell
+        catppuccin.homeModules.catppuccin
+        dms.homeModules.dank-material-shell
+        dms-plugin-registry.modules.default
+        nirix.homeModules.default
+        nix-monitor.homeManagerModules.default
         ./style
+        ./dms.nix
+        ./development
+        ./browser.nix
     ];
+    home.packages = with pkgs; [
+        nemo
+        nemo-fileroller
+        nemo-preview
+    ];
+    programs.vicinae = {
+        enable = true;
+        settings = {
+            faviconService = "twenty";
+        };
+    };
 }

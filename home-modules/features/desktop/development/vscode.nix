@@ -1,0 +1,51 @@
+{ pkgs, nix-vscode-extensions, ... }:
+let
+    system = "x86_64-linux";
+    extensions = nix-vscode-extensions.extensions.${system};
+in
+{
+    programs.vscode = {
+        enable = true;
+        package = pkgs.vscodium;
+        profiles.default.extensions =
+            (with extensions.open-vsx-release; [
+                signageos.signageos-vscode-sops
+                gavinleroy.argus
+                ms-python.autopep8
+                mads-hartmann.bash-ide-vscode
+                washan.cargo-appraiser
+                alexdauenhauer.catppuccin-noctis
+                alexdauenhauer.catppuccin-noctis-icons
+                llvm-vs-code-extensions.vscode-clangd
+                ms-azuretools.vscode-containers
+                vunguyentuan.vscode-css-variables
+                mkhl.direnv
+                ms-azuretools.vscode-docker
+                cschlosser.doxdocgen
+                usernamehw.errorlens
+                dbaeumer.vscode-eslint
+                waderyan.gitblame
+                eamodio.gitlens
+                lokalise.i18n-ally
+                ms-vscode.live-server
+                jnoortheen.nix-ide
+                christian-kohler.path-intellisense
+                esbenp.prettier-vscode
+                yoavbls.pretty-ts-errors
+                meta.pyrefly
+                ms-python.python
+                ms-python.debugpy
+                ms-python.vscode-python-envs
+                jscearcy.rust-doc-viewer
+                rust-lang.rust-analyzer
+                sibiraj-s.vscode-scss-formatter
+                mrmlnc.vscode-scss
+                belfz.search-crates-io
+                tombi-toml.tombi
+                redhat.vscode-yaml
+            ])
+            ++ (with extensions.vscode-marketplace-release; [
+                kdl-org.kdl
+            ]);
+    };
+}

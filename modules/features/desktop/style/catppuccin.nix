@@ -1,10 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
-    catppuccin = {
+    stylix = {
         enable = true;
-        flavor = "mocha";
-        accent = "mauve";
-        plymouth.enable = false;
-        tty.enable = false;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+        autoEnable = true;
     };
+    boot.plymouth.enable = true;
 }

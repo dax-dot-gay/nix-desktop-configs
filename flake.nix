@@ -15,8 +15,8 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        niri-flake = {
-            url = "github:sodiboo/niri-flake";
+        nirix = {
+            url = "github:dax-dot-gay/nirix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         dms = {
@@ -25,6 +25,38 @@
         };
         catppuccin = {
             url = "github:catppuccin/nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        dms-plugin-registry = {
+            url = "github:AvengeMedia/dms-plugin-registry";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nix-monitor = {
+            url = "github:antonjah/nix-monitor";
+        };
+
+        # Basing some of this off https://github.com/nficca/nixos-config
+        niri-wip = {
+            url = "github:niri-wm/niri/wip/branch";
+            inputs.nixpkgs.follows = "nixpkgs";
+
+            # https://github.com/niri-wm/niri/blob/2dc6f4482c4eeed75ea8b133d89cad8658d38429/flake.nix#L8-L9
+            inputs.rust-overlay.follows = "";
+        };
+        nix-vscode-extensions = {
+            url = "github:nix-community/nix-vscode-extensions";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        stylix = {
+            url = "github:nix-community/stylix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nur = {
+            url = "github:nix-community/NUR";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        comin = {
+            url = "github:nlewo/comin";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
@@ -37,7 +69,10 @@
         }@inputs:
         let
             system = "x86_64-linux";
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+            };
             utilities = import ./utils;
 
             mkMachine =
@@ -65,6 +100,7 @@
                         inputs.home-manager.nixosModules.home-manager
                         inputs.disko.nixosModules.disko
                         inputs.sops-nix.nixosModules.sops
+                        inputs.comin.nixosModules.comin
                     ]
                     ++ flakes
                     ++ (map (feature: ./modules/features/${feature}) features);
@@ -74,6 +110,11 @@
             nixosConfigurations = {
                 testbed = mkMachine {
                     hostname = "testbed";
+                    features = [ "desktop" ];
+                    home-features = [ "desktop" ];
+                };
+                stryker = mkMachine {
+                    hostname = "stryker";
                     features = [ "desktop" ];
                     home-features = [ "desktop" ];
                 };
