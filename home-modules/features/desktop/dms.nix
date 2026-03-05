@@ -1,4 +1,4 @@
-{ hostname, ... }:
+{ ... }:
 {
     programs.dank-material-shell = {
         enable = true;
@@ -13,11 +13,9 @@
     };
     programs.nix-monitor = {
         enable = true;
-        rebuildCommand = [
-            "zsh"
-            "-c"
-            "pkexec nixos-rebuild switch --flake /etc/nixos/#${hostname} 2>&1"
-        ];
+        rebuildCommand = [ "/usr/bin/env" "zsh" "-c" "comin fetch" ];
+        generationsCommand = [ "/usr/bin/env" "zsh" "-c" "echo $(echo -E \"$(comin status --json)\" | jq '.store.deployments | length')" ];
+        gcCommand = ["/usr/bin/env" "zsh" "-c" "pkexec nix-collect-garbage -d"];
         nixpkgsChannel = "nixos-unstable";
     };
     home.file.".config/DankMaterialShell/themes/catppuccin/theme.json".source = ./catppuccin.json;
