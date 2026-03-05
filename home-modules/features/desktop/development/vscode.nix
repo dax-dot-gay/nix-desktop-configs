@@ -55,7 +55,7 @@ in
                 "git.autofetch" = true;
                 "nix.enableLanguageServer" = true;
                 "workbench.colorTheme" = "Catppuccin Noctis Mocha";
-                "workbench.iconTheme" = "catppuccin noctis icons"
+                "workbench.iconTheme" = "catppuccin noctis icons";
             }
         };
         
