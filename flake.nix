@@ -59,6 +59,10 @@
             url = "github:nlewo/comin";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        awww = {
+            url = "git+https://codeberg.org/LGFae/awww";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =

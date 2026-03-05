@@ -15,7 +15,6 @@
         gnome-keyring
         dconf-editor
     ];
-
     programs.niri = {
         enable = true;
         variant = "stable";
