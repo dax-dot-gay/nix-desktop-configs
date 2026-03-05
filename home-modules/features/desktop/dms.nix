@@ -10,10 +10,6 @@
             displayOutput.enable = true;
             displayManager.enable = true;
         };
-        session = {
-            showThirdPartyPlugins = true;
-            weatherLocation = "Rochester, NY";
-        };
     };
     programs.nix-monitor = {
         enable = true;

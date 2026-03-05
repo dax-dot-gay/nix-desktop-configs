@@ -20,7 +20,6 @@
         ./browser.nix
         ./niri
         ./apps.nix
-        ./syncthing.nix
     ];
     home.packages = with pkgs; [
         nemo-with-extensions

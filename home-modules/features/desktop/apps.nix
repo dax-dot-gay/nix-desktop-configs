@@ -11,4 +11,8 @@
         enable = true;
         autostart = true;
     };
+    services.syncthing = {
+        enable = true;
+        tray.enable = true;
+    };
 }
