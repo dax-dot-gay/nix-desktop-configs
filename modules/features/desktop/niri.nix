@@ -12,6 +12,7 @@
         cage
         gamescope
         xwayland-satellite
+        gnome-keyring
     ];
 
     programs.niri = {
@@ -19,5 +20,15 @@
         variant = "stable";
         withXDG = true;
         useNautilus = false;
+    };
+    xdg.portal.config = {
+        common = {
+            default = [
+                "gtk"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+                "gnome-keyrong"
+            ];
+        };
     };
 }
