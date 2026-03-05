@@ -41,6 +41,8 @@
                 "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
                 "wl-paste --watch cliphist store"
                 "vicinae server"
+                "awww-daemon"
+                "awww img --transition-type none ~/.config/assets/wallpaper.gif"
             ];
             screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
             window-rules = {
