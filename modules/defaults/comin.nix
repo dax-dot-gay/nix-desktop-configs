@@ -38,9 +38,10 @@
                         USER=$(loginctl show-session $id --property=Name --value)
                         if [ ! -e /home/$USER/.local/share/comin-deployment ] || [ ! $(cat /home/$USER/.local/share/comin-deployment) == $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) ]; then
                             echo $(echo "$(comin status --json)" | jq .deploy_confirmer.submitted) > /home/$USER/.local/share/comin-deployment
-                            RESPONSE=$(sudo -u $USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u $USER)/bus notify-send --urgency=critical --app-name="Comin" --action=update=Update "Update Available!" "A deployment is available for deployment. To validate the build, run <sudo journalctl -xeu comin>")
+                            COMMIT=$(echo "$(comin status --json)" | jq ".builder.generation.selected_commit_msg | trimstr(\"\n\")")
+                            RESPONSE=$(sudo -u $USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u $USER)/bus notify-send --urgency=critical --app-name="Comin" --action=update=Update "Update Available!" "Commit: $COMMIT"
                             if [ $RESPONSE == "update" ]; then
-                                pkexec comin confirmation accept
+                                comin confirmation accept
                             fi
                         fi
                     fi
