@@ -26,14 +26,17 @@
         history.append = true;
         initContent =
             let
-                zshRunCommands = lib.mkOrder 1500 ''
-                    bindkey  "^[[H"   beginning-of-line
-                    bindkey  "^[[F"   end-of-line
+                zshBindKey = lib.mkOrrder 1000 ''
+                    bindkey  "^[OH"   beginning-of-line
+                    bindkey  "^[OF"   end-of-line
                     bindkey  "^[[3~"  delete-char
+                '';
+                zshRunCommands = lib.mkOrder 1500 ''
                     hyfetch
                 '';
             in
             lib.mkMerge [
+                zshBindKey
                 zshRunCommands
             ];
         syntaxHighlighting.enable = true;
