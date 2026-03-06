@@ -9,6 +9,7 @@
             tailscale.enable = true;
             displayOutput.enable = true;
             displayManager.enable = true;
+            dankAudioVisualizer.enable = true;
         };
     };
     programs.nix-monitor = {
