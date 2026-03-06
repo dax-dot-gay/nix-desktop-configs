@@ -27,7 +27,7 @@
                     install --mode=0777 --owner=dax --group=dax -d /mnt/data
                 fi
                 echo $(cat ${config.sops.secrets."data-key".path}) > /run/data.key
-                chown /run/data.key root:root
+                chown root:root /run/data.key
                 chmod 700 /run/data.key
 
                 if [ -e /dev/mapper/cryptdata ]; then
