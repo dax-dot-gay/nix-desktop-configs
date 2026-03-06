@@ -12,10 +12,6 @@
         deployConfirmer = {
             mode = lib.mkDefault "manual";
         };
-        desktop = {
-            enable = true;
-            title = "Comin - Update Service";
-        };
         remotes = [
             {
                 name = "origin";
