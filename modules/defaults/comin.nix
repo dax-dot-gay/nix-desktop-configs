@@ -2,10 +2,6 @@
 {
     environment.systemPackages = [
         pkgs.libnotify pkgs.jq pkgs.jq-zsh-plugin
-        (pkgs.writeShellScriptBin "cupdate" ''
-            comin fetch
-            journalctl -xefu comin
-        '')
     ];
     services.comin = {
         enable = true;
