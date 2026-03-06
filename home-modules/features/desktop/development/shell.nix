@@ -26,7 +26,7 @@
         history.append = true;
         initContent =
             let
-                zshBindKey = lib.mkOrrder 1000 ''
+                zshBindKey = lib.mkOrder 1000 ''
                     bindkey  "^[OH"   beginning-of-line
                     bindkey  "^[OF"   end-of-line
                     bindkey  "^[[3~"  delete-char
