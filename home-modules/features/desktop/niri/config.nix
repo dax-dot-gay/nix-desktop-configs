@@ -85,6 +85,12 @@
                     ];
                     place-within-backdrop = true;
                 };
+                dms-widgets = {
+                    match = [
+                        {namespace = "^dms:desktop-widget:.*";}
+                    ];
+                    shadow.enable = false;
+                };
             };
             binds = {
                 "Mod+Return" = {
