@@ -304,6 +304,7 @@ in
              };
         };
 
+        nix.settings.trusted-users = ["root" "@wheel"];
         boot.loader.limine.secureBoot.enable = cfg.secureboot;
         home-manager = {
             useGlobalPkgs = true;
