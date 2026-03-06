@@ -47,15 +47,6 @@
                     mtab
                     pkgs.nur.repos.rycee.firefox-addons."2fas-two-factor-authentication"
                 ];
-                settings."uBlock0@raymondhill.net".settings = {
-                    selectedFilterLists = [
-                        "ublock-filters"
-                        "ublock-badware"
-                        "ublock-privacy"
-                        "ublock-unbreak"
-                        "ublock-quick-fixes"
-                    ];
-                };
                 settings."contact@maxhu.dev".settings = builtins.fromJSON (builtins.readFile ./mtab.json);
                 force = true;
             };
