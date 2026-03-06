@@ -28,7 +28,7 @@
                 fi
 
                 if [ -e /dev/mapper/cryptdata ]; then
-                    umount -q /mnt/data
+                    umount -f -q /mnt/data
                     ${pkgs.cryptsetup}/bin/cryptsetup close cryptdata
                 fi
 
