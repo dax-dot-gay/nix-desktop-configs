@@ -40,4 +40,14 @@
             cryptstorage UUID=59ca76bf-c608-47c3-b9ee-7f00b34aa98b /.persist/data-key
         '';
     };
+    fileSystems."/mnt/data" = {
+        depends = ["/"];
+        device = "/dev/disk/by-uuid/59ca76bf-c608-47c3-b9ee-7f00b34aa98b";
+        fsType = "ext4";
+        options = [
+            "rw"
+            "nofail"
+            "users"
+        ];
+    };
 }
