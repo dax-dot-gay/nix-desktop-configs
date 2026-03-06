@@ -56,4 +56,44 @@
         "video=DP-2:1920x1080@60,rotate=270"
         "video=HDMI-A-2:1920x1080@60"
     ];
+    programs.dank-material-shell.greeter = {
+        configHome = "/home/dax";
+        compositor.customConfig = ''
+            hotkey-overlay {
+                skip-at-startup
+            }
+
+            environment {
+                DMS_RUN_GREETER "1"
+            }
+
+            gestures {
+                hot-corners {
+                    off
+                }
+            }
+            layout {
+                background-color "#000000"
+            }
+
+            output "DP-1" {
+                mode "2560x1440@59.951"
+                position x=1080 y=480
+                scale 1
+                transform "normal"
+            }
+            output "DP-2" {
+                mode "1920x1080@60"
+                position x=0 y=0
+                scale 1
+                transform "270"
+            }
+            output "HDMI-A-2" {
+                mode "1920x1080@60"
+                position x=3640 y=840
+                scale 1
+                transform "normal"
+            }
+        '';
+    };
 }
