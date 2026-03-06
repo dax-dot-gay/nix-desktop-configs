@@ -27,7 +27,7 @@
                     install --mode=0777 --owner=dax --group=dax -d /mnt/data
                 fi
 
-                cryptsetup open /dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y910545E cryptdata --key-file ${config.sops.secrets."data-key"}
+                cryptsetup open /dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y910545E cryptdata --key-file ${config.sops.secrets."data-key".path}
                 mount /dev/mapper/cryptdata /mnt/data
             '';
         };
