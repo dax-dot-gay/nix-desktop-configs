@@ -7,5 +7,7 @@
         (prismlauncher.override {
             additionalPrograms = [ffmpeg];
         })
+        ckan
+        satisfactorymodmanager
     ];
 }
