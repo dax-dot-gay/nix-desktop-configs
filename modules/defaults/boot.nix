@@ -6,6 +6,7 @@
         efiSupport = true;
         maxGenerations = 3;
     };
+    boot.loader.timeout = null;
     boot.loader.efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
@@ -13,4 +14,14 @@
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.initrd.systemd.enable = true;
     environment.systemPackages = [pkgs.sbctl];
+    boot.consoleLogLevel = 3;
+    boot.initrd.verbose = false;
+    boot.kernelParams = [
+        "splash"
+        "quiet"
+        "udev.log_level=3"
+        "systemd.show_status=auto"
+        "plymouth.use-simpledrm=1"
+        "video=efifb"
+    ];
 }
