@@ -27,4 +27,10 @@
     nixpkgs.overlays = [
         nur.overlays.default
     ];
+    nix.gc = {
+        automatic = true;
+        dates = "daily";
+    };
+    nix.optimise.automatic = true;
+    nix.optimise.dates = ["02:00"];
 }

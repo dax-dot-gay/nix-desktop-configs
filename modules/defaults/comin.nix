@@ -10,7 +10,7 @@
     services.comin = {
         enable = true;
         deployConfirmer = {
-            mode = lib.mkDefault "auto";
+            mode = lib.mkDefault "manual";
         };
         desktop = {
             enable = true;

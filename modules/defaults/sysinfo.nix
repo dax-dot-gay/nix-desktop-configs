@@ -4,7 +4,7 @@ let
         {
             name,
             script,
-            interval ? "30s",
+            interval ? "5m",
         }:
         {
             timers."sysinfo-${name}" = {
