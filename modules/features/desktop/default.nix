@@ -18,6 +18,7 @@
         ./style
         ./dms.nix
         ./niri.nix
+        ./printers.nix
     ];
     environment.systemPackages = [
         pkgs.keepassxc
