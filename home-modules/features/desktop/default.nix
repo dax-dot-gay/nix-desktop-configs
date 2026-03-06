@@ -49,7 +49,8 @@ with config.lib.file;
         };
     };
     xdg.configFile."gtk-3.0/bookmarks".text = ''
-        file:///mnt/data data
+        file:///home/dax/Downloads Downloads
+        file:///home/dax/Documents Documents
         file:///mnt/data/Programming Programming
     '';
     home.file = let mkSymlink = name: mkOutOfStoreSymlink "/mnt/data/user_folders/${name}"; in {
