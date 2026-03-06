@@ -42,7 +42,7 @@
     };
     fileSystems."/mnt/data" = {
         depends = ["/"];
-        device = "/dev/disk/by-uuid/59ca76bf-c608-47c3-b9ee-7f00b34aa98b";
+        device = "/dev/mapper/cryptstorage";
         fsType = "ext4";
         options = [
             "rw"
