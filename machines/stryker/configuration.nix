@@ -48,6 +48,7 @@
             "rw"
             "nofail"
             "users"
+            "exec"
         ];
     };
 }
