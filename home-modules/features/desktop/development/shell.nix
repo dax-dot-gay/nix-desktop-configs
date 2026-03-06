@@ -17,8 +17,8 @@
         autosuggestion = {
             enable = true;
             strategy = [
-                "completion"
                 "history"
+                "completion"
             ];
         };
         defaultKeymap = "emacs";
