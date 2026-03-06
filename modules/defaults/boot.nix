@@ -17,11 +17,9 @@
     boot.consoleLogLevel = 3;
     boot.initrd.verbose = false;
     boot.kernelParams = [
-        "splash"
         "quiet"
         "udev.log_level=3"
         "systemd.show_status=auto"
-        "plymouth.use-simpledrm=1"
-        "video=efifb"
+        "nomodeset"
     ];
 }
