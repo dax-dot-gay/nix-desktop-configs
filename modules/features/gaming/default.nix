@@ -13,5 +13,6 @@
         p7zip
         websocat
         protontricks
+        winetricks
     ];
 }
