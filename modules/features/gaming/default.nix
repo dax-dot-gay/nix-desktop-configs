@@ -15,6 +15,8 @@
         protontricks
         winetricks
         wine
+        wine64
+        bottles
         limo
     ];
 }
