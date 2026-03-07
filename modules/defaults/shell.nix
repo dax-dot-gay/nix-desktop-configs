@@ -27,6 +27,7 @@
         lsd
         polkit
         btop-rocm
+        rocmPackages.rocm-smi
     ];
     programs.git = {
         enable = true;
