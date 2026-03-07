@@ -26,6 +26,7 @@
         bat
         lsd
         polkit
+        btop-rocm
     ];
     programs.git = {
         enable = true;
