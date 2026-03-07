@@ -9,5 +9,9 @@
         })
         ckan
         satisfactorymodmanager
+        zenity
+        p7zip
+        websocat
+        protontricks
     ];
 }
