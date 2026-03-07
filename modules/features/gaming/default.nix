@@ -14,5 +14,7 @@
         websocat
         protontricks
         winetricks
+        wine
+        limo
     ];
 }
