@@ -27,4 +27,8 @@
     services.udisks2 = {
         enable = true;
     };
+    programs.localsend = {
+        enable = true;
+        openFirewall = true;
+    };
 }
