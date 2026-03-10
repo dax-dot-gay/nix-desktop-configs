@@ -63,6 +63,9 @@
             url = "git+https://codeberg.org/LGFae/awww";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nix-flatpak = {
+            url = "github:gmodena/nix-flatpak/?ref=latest";
+        };
     };
 
     outputs =
@@ -115,7 +118,7 @@
                 };
                 stryker = mkMachine {
                     hostname = "stryker";
-                    features = [ "desktop" "multimedia" "nitrokey" "gaming" ];
+                    features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" ];
                     home-features = [ "desktop" ];
                 };
             };

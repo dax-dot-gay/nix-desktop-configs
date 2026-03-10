@@ -1,0 +1,12 @@
+{ nix-flatpak, ... }:
+{
+    imports = [
+        nix-flatpak.nixosModules.nix-flatpak
+    ];
+    services.flatpak = {
+        enable = true;
+        packages = [
+            "com.github.Matoking.protontricks"
+        ];
+    };
+}

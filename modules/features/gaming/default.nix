@@ -12,11 +12,7 @@
         zenity
         p7zip
         websocat
-        protontricks
-        winetricks
         wine
         wine64
-        bottles
-        limo
     ];
 }

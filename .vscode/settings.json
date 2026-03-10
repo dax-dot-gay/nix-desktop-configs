@@ -8,10 +8,10 @@
       },
       "options": {
         "nixos": {
-          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.testbed.options"
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.stryker.options"
         },
         "nixos-home-manager": {
-          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.testbed.options.home-manager.users.type.getSubOptions []"
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.stryker.options.home-manager.users.type.getSubOptions []"
         }
       }
     }

@@ -6,7 +6,6 @@
         dedicatedServer.openFirewall = true;
         extraCompatPackages = with pkgs; [
             proton-ge-bin
-            steamtinkerlaunch
         ];
         package = pkgs.steam.override {
             extraPkgs =
@@ -31,8 +30,5 @@
     environment.systemPackages = with pkgs; [
         steam-run
         gamescope-wsi
-        protontricks
-        winetricks
-        steamtinkerlaunch
     ];
 }
