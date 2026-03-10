@@ -46,6 +46,7 @@
                     steam-database
                     mtab
                     pkgs.nur.repos.rycee.firefox-addons."2fas-two-factor-authentication"
+                    zoom-redirector
                 ];
                 settings."contact@maxhu.dev".settings = builtins.fromJSON (builtins.readFile ./mtab.json);
                 force = true;
