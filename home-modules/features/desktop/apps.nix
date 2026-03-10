@@ -4,7 +4,6 @@
         feishin
         element-desktop
         equibop
-        zoom-us
         delfin
     ];
     services.syncthing = {
