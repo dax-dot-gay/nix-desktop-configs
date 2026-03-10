@@ -30,5 +30,6 @@
     environment.systemPackages = with pkgs; [
         steam-run
         gamescope-wsi
+        protontricks
     ];
 }

@@ -6,7 +6,6 @@
     services.flatpak = {
         enable = true;
         packages = [
-            "com.github.Matoking.protontricks"
         ];
         overrides = {
             global = {
