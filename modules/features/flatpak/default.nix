@@ -6,6 +6,7 @@
     services.flatpak = {
         enable = true;
         packages = [
+            "io.github.limo_app.limo"
         ];
         overrides = {
             global = {
