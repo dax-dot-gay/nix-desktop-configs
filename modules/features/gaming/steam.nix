@@ -32,5 +32,6 @@
         steam-run
         gamescope-wsi
         protontricks
+        bottles
     ];
 }
