@@ -7,6 +7,7 @@
         enable = true;
         packages = [
             "io.github.limo_app.limo"
+            "com.github.Matoking.protontricks"
         ];
         overrides = {
             global = {
