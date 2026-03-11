@@ -31,6 +31,5 @@
         steam-run
         gamescope-wsi
         bottles
-        proton-ge-bin
     ];
 }
