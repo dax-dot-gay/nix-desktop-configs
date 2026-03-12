@@ -278,7 +278,7 @@ in
 
         systemd.services.provision-ssh-keys = {
             enable = true;
-            after = ["network.target"];
+            after = ["multi-user.target"];
             wantedBy = ["default.target"];
             script = concatStringsSep "\n" (
             map (user: ''
