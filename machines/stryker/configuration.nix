@@ -51,11 +51,11 @@
             "exec"
         ];
     };
-    boot.kernelModules = [
+    /*boot.kernelModules = [
         "video=DP-1:2560x1440@59.951"
         "video=DP-2:1920x1080@60,rotate=270"
         "video=HDMI-A-2:1920x1080@60"
-    ];
+    ];*/
     programs.dank-material-shell.greeter = {
         configHome = "/home/dax";
         compositor.customConfig = ''
@@ -95,5 +95,10 @@
                 transform "normal"
             }
         '';
+    };
+    networking.interfaces = {
+        wlp10s0.useDHCP = false;
+        enp7s0.useDHCP = false;
+        enp20s0f3u1u4u3.useDHCP = false;
     };
 }
