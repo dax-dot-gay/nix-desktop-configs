@@ -51,7 +51,7 @@
             "exec"
         ];
     };
-    /*boot.kernelModules = [
+    /*boot.kernelParams = [
         "video=DP-1:2560x1440@59.951"
         "video=DP-2:1920x1080@60,rotate=270"
         "video=HDMI-A-2:1920x1080@60"
