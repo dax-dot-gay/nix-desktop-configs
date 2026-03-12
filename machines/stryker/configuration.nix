@@ -101,4 +101,9 @@
         enp7s0.useDHCP = false;
         enp20s0f3u1u4u3.useDHCP = false;
     };
+    networking.networkmanager.unmanaged = [
+        "enp20s0f3u1u4u3"
+        "wlp10s0"
+        "enp7s0"
+    ];
 }
