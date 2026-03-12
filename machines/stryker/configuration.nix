@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
     flake.system-configuration = {
         enable = true;
@@ -51,11 +51,11 @@
             "exec"
         ];
     };
-    /*boot.kernelParams = [
-        "video=DP-1:2560x1440@59.951"
-        "video=DP-2:1920x1080@60,rotate=270"
-        "video=HDMI-A-2:1920x1080@60"
-    ];*/
+    boot.kernelParams = [
+        "video=DP-1:2560x1440@240"
+        "video=DP-2:2560x1440@240"
+        "video=HDMI-A-2:1920x1080@60,rotate=270"
+    ];
     programs.dank-material-shell.greeter = {
         configHome = "/home/dax";
         compositor.customConfig = ''
@@ -77,22 +77,22 @@
             }
 
             output "DP-1" {
-                mode "2560x1440@59.951"
+                mode "2560x1440@240"
                 position x=1080 y=480
                 scale 1
                 transform "normal"
             }
             output "DP-2" {
+                mode "2560x1440@240"
+                position x=3640 y=480
+                scale 1
+                transform "normal"
+            }
+            output "HDMI-A-2" {
                 mode "1920x1080@60"
                 position x=0 y=0
                 scale 1
                 transform "270"
-            }
-            output "HDMI-A-2" {
-                mode "1920x1080@60"
-                position x=3640 y=840
-                scale 1
-                transform "normal"
             }
         '';
     };

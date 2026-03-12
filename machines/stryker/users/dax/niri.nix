@@ -3,16 +3,16 @@
     wayland.windowManager.niri.settings = {
         outputs = {
             "DP-2" = {
-                mode = "1920x1080@60";
+                mode = "2560x1440@240";
                 scale = 1;
-                transform = "270";
+                transform = "normal";
                 position = {
-                    x = 0;
-                    y = 0;
+                    x = 3640;
+                    y = 480;
                 };
             };
             "DP-1" = {
-                mode = "2560x1440@59.951";
+                mode = "2560x1440@240";
                 scale = 1;
                 transform = "normal";
                 position = {
@@ -23,10 +23,10 @@
             "HDMI-A-2" = {
                 mode = "1920x1080@60";
                 scale = 1;
-                transform = "normal";
+                transform = "270";
                 position = {
-                    x = 3640;
-                    y = 840;
+                    x = 0;
+                    y = 0;
                 };
             };
         };
