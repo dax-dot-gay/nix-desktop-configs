@@ -97,9 +97,9 @@
         '';
     };
     networking.interfaces = {
-        wlp10s0.useDHCP = false;
-        enp7s0.useDHCP = false;
-        enp20s0f3u1u4u3.useDHCP = false;
+        wlp10s0.useDHCP = lib.mkForce false;
+        enp7s0.useDHCP = lib.mkForce false;
+        enp20s0f3u1u4u3.useDHCP = lib.mkForce false;
     };
     networking.networkmanager.unmanaged = [
         "enp20s0f3u1u4u3"
@@ -107,6 +107,9 @@
         "enp7s0"
     ];
     systemd.network.wait-online = {
-        enable = false;
+        enable = lib.mkForce false;
+    };
+    systemd.services.NetworkManager-wait-online = {
+        enable = lib.mkForce false;
     };
 }
