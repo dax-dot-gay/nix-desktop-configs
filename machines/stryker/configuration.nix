@@ -106,4 +106,7 @@
         "wlp10s0"
         "enp7s0"
     ];
+    systemd.network.wait-online = {
+        enable = false;
+    };
 }

@@ -39,7 +39,7 @@
                 ];
                 on-open = {
                     open-maximized = true;
-                    open-on-output = "DP-2";
+                    open-on-output = "HDMI-A-2";
                 };
             };
             floating-windows = {
