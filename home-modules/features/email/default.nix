@@ -7,6 +7,8 @@
     programs.thunderbird = {
         enable = true;
         profiles.default = {
+            name = "default";
+            isDefault = true;
             extensions = with pkgs.nur.repos.rycee.thunderbird-addons; [
                 send-later
                 tbkeys
