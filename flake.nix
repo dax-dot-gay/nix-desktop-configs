@@ -119,7 +119,7 @@
                 stryker = mkMachine {
                     hostname = "stryker";
                     features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" ];
-                    home-features = [ "desktop" ];
+                    home-features = [ "desktop" "email" ];
                 };
             };
         };
