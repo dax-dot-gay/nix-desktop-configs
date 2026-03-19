@@ -16,6 +16,7 @@
         entries = [
           "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop"
           "${pkgs.equibop}/share/applications/equibop.desktop"
+          "${pkgs.cinny-desktop}/share/applications/Cinny.desktop"
         ];
     };
 }
