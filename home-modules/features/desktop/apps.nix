@@ -5,6 +5,7 @@
         element-desktop
         equibop
         delfin
+        libreoffice-fresh
     ];
     services.syncthing = {
         enable = true;
