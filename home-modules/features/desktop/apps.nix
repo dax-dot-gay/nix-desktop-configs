@@ -2,7 +2,7 @@
 {
     home.packages = with pkgs; [
         feishin
-        element-desktop
+        cinny-desktop
         equibop
         delfin
         libreoffice-fresh
@@ -16,7 +16,6 @@
         entries = [
           "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop"
           "${pkgs.equibop}/share/applications/equibop.desktop"
-          "${pkgs.element-desktop}/share/applications/element-desktop.desktop"
         ];
     };
 }
