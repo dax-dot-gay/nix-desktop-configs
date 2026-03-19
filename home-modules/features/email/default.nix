@@ -17,4 +17,8 @@
             ];
         };
     };
+    xdg.autostart.entries = [
+        "${pkgs.protonmail-bridge-gui}/share/applications/protonmail-bridge-gui.desktop"
+        "${pkgs.birdtray}/share/applications/com.ulduzsoft.Birdtray.desktop"
+    ];
 }
