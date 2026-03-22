@@ -19,6 +19,7 @@
             settings = {
                 "webgl.disable" = false;
                 "webgl.disabled" = false;
+                "webgl.force-enabled" = true;
                 "identity.fxaccounts.enabled" = true;
                 "media.eme.enabled" = true;
                 "browser.urlbar.suggest.searches" = true;
