@@ -35,7 +35,6 @@
     systemd.user.services.thunderbird-monitor = {
          Unit = {
             Description = "Mozilla Thunderbird Monitoring service";
-            PartOf = "graphical-session.target";
          };
          Service = {
             # I also use connman, so I delay starting Thunderbird-headless until WAN-connectivity is up
@@ -43,12 +42,11 @@
             ExecStart = "${pkgs.thunderbird}/bin/.thunderbird-wrapped__ --headless";
             Restart = "on-failure";
          };
-         Install.WantedBy = [ "graphical-session.target" ];
+         Install.WantedBy = [ "default.target" ];
       };
       systemd.user.services.thunderbird-gui = {
          Unit = {
             Description = "Mozilla Thunderbird GUI service";
-            PartOf = "graphical-session.target";
             Conflicts = "thunderbird-monitor.service";
             After = "thunderbird-monitor.service";
          };
@@ -73,7 +71,7 @@
       };
 
       wayland.windowManager.niri.settings.spawn-at-startup = [
-         "${pkgs.birdtray}/bin/birdtray"
+         "sleep 5; ${pkgs.birdtray}/bin/birdtray"
          "${pkgs.protonmail-bridge-gui}/bin/protonmail-bridge-gui"
       ];
 }
