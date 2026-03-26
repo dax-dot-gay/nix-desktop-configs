@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
 
     src = fetchgit {
         url = "https://github.com/Ximi1970/systray-x.git";
-        rev = "0.9.2";
+        rev = "0.9.11";
         sha256 = "sha256-rRTyM8dJTfVyPYa43E461yxrUpjvOxGzWz+3IafvOxs=";
         leaveDotGit = true;
     };
