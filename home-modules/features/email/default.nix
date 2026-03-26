@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-    systray-x = pkgs.libsForQt5.callPackage ./systray-x.nix {};
+    systray-x = pkgs.libsForQt5.callPackage ./systray-x.nix {x11extras = pkgs.libsForQt5.qt5.qtx11extras;};
 in
 {
     home.packages = with pkgs; [

@@ -8,6 +8,7 @@
     zip,
     which,
     git,
+    x11extras
 }:
 stdenv.mkDerivation rec {
     name = "systray-x";
@@ -22,6 +23,7 @@ stdenv.mkDerivation rec {
     buildInputs = [
         qtbase
         knotifications
+        x11extras
     ];
     nativeBuildInputs = [
         zip
