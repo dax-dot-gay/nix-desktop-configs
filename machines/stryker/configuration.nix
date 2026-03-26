@@ -19,20 +19,18 @@
         neededForUsers = true;
     };
     system.activationScripts = {
-      persist-secret-key = {
-        # Run after /dev has been mounted
-        deps = [ "setupSecrets" ];
-        text =
-          ''
-            if [ ! -d /.persist ]; then
-                install --mode=0700 --owner=root --group=root -d /.persist
-            fi
+        persist-secret-key = {
+            # Run after /dev has been mounted
+            deps = [ "setupSecrets" ];
+            text = ''
+                if [ ! -d /.persist ]; then
+                    install --mode=0700 --owner=root --group=root -d /.persist
+                fi
 
-            cp ${config.sops.secrets."data-key".path} /.persist/data-key
-          '';
-      };
-    }
-    ;
+                cp ${config.sops.secrets."data-key".path} /.persist/data-key
+            '';
+        };
+    };
     environment.etc.crypttab = {
         mode = "0600";
         text = ''
@@ -41,7 +39,7 @@
         '';
     };
     fileSystems."/mnt/data" = {
-        depends = ["/"];
+        depends = [ "/" ];
         device = "/dev/mapper/cryptstorage";
         fsType = "ext4";
         options = [
@@ -101,15 +99,8 @@
         enp7s0.useDHCP = lib.mkForce false;
         enp20s0f3u1u4u3.useDHCP = lib.mkForce false;
     };
-    networking.networkmanager.unmanaged = [
-        "enp20s0f3u1u4u3"
-        "wlp10s0"
-        "enp7s0"
-    ];
-    systemd.network.wait-online = {
-        enable = lib.mkForce false;
-    };
-    systemd.services.NetworkManager-wait-online = {
-        enable = lib.mkForce false;
-    };
+    systemd.services."network-addresses-enp7s0".enable = lib.mkForce false;
+    systemd.services."network-addresses-wlp9s0".enable = lib.mkForce false;
+    systemd.services."network-addresses-enp20s0f3u1u4u3".enable = lib.mkForce false;
+    systemd.services."network-addresses-wlp10s0".enable = lib.mkForce false;
 }
