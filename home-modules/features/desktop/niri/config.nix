@@ -38,7 +38,6 @@
                 QT_QPA_PLATFORMTHEME = "gtk3";
             };
             spawn-at-startup = [
-                "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
                 "wl-paste --watch cliphist store"
                 "vicinae server"
                 "awww-daemon"
