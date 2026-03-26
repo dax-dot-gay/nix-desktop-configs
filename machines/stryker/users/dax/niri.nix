@@ -36,6 +36,7 @@
                     { app-id = "equibop"; }
                     { app-id = "cinny"; }
                     { app-id = "Element"; }
+                    { title = "Discord"; }
                 ];
                 on-open = {
                     open-maximized = true;
