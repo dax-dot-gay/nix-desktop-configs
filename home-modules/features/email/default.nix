@@ -76,13 +76,13 @@
             Description = "Mozilla Thunderbird System Tray (birdtray) service";
             # I also run xfce4-panel in a user service which provides my
             # system-tray (its service is called shell-panel.service)
-            PartOf = "shell-panel.service";
-            After = "shell-panel.service";
+            PartOf = "dms.service";
+            After = "dms.service";
          };
          Service = {
             ExecStart = "${pkgs.birdtray}/bin/birdtray";
             Restart = "on-failure";
          };
-         Install.WantedBy = [ "shell-panel.service" ];
+         Install.WantedBy = [ "dms.service" ];
       };
 }
