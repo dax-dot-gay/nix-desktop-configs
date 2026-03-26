@@ -28,6 +28,7 @@
         polkit
         btop-rocm
         rocmPackages.rocm-smi
+        killall
     ];
     programs.git = {
         enable = true;
