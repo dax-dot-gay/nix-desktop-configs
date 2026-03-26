@@ -1,8 +1,11 @@
 { pkgs, ... }:
+let
+    systray-x = pkgs.callPackage ./systray-x.nix {};
+in
 {
     home.packages = with pkgs; [
         protonmail-bridge-gui
-        birdtray
+        systray-x
     ];
     programs.thunderbird = {
         enable = true;
@@ -17,8 +20,4 @@
             ];
         };
     };
-    xdg.autostart.entries = [
-        "${pkgs.protonmail-bridge-gui}/share/applications/protonmail-bridge-gui.desktop"
-        "${pkgs.birdtray}/share/applications/com.ulduzsoft.Birdtray.desktop"
-    ];
 }
