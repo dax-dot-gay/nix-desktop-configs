@@ -4,7 +4,6 @@
     fetchgit,
     qtbase,
     wrapQtAppsHook,
-    knotifications,
     zip,
     which,
     git,
@@ -22,7 +21,6 @@ stdenv.mkDerivation rec {
 
     buildInputs = [
         qtbase
-        knotifications
         x11extras
     ];
     nativeBuildInputs = [
@@ -31,6 +29,8 @@ stdenv.mkDerivation rec {
         which
         git
     ];
+
+    makeFlags = ["OPTIONS=\"DEFINES+=NO_KDE_INTEGRATION\""];
 
     installPhase = ''
         mkdir -p $out/bin
