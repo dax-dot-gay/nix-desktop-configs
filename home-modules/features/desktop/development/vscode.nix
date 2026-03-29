@@ -84,8 +84,10 @@ in
                 "[nix]" = {
                     "editor.tabSize" = 4;
                 };
-                "editor.fontFamily" = "'FiraCode Nerd Font', sans-serif";
-                "terminal.integrated.fontFamily" = "'FiraCode Nerd Font', sans-serif";
+                "editor.fontFamily" = "'Fira Code', sans-serif";
+                "terminal.integrated.fontFamily" = "'Fira Code', sans-serif";
+                "terminal.integrated.fontLigatures.enabled" = true;
+                "editor.fontLigatures" = true;
             };
         };
         
