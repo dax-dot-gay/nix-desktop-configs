@@ -38,7 +38,6 @@
          };
          Service = {
             # I also use connman, so I delay starting Thunderbird-headless until WAN-connectivity is up
-            ExecStartPre = "-${pkgs.connman}/bin/connmand-wait-online --timeout=60";
             ExecStart = "${pkgs.thunderbird}/bin/.thunderbird-wrapped__ --headless";
             Restart = "on-failure";
          };
