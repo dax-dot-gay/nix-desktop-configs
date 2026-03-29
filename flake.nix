@@ -114,12 +114,12 @@
                 testbed = mkMachine {
                     hostname = "testbed";
                     features = [ "desktop" ];
-                    home-features = [ "desktop" ];
+                    home-features = [ "desktop" "browser" ];
                 };
                 stryker = mkMachine {
                     hostname = "stryker";
                     features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" ];
-                    home-features = [ "desktop" "email" ];
+                    home-features = [ "desktop" "email" "browser" ];
                 };
             };
         };
