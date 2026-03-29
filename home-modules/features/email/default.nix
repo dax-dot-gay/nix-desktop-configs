@@ -82,7 +82,7 @@
       categories = ["Network" "Feed" "Email"];
       icon = "thunderbird";
       startupNotify = true;
-      type = "application";
+      type = "Application";
       comment = "Read and write e-mails or RSS feeds, or manage tasks on calendars.";
       mimeType = ["message/rfc822" "x-scheme-handler/mailto" "text/calendar" "text/x-vcard"];
    };
