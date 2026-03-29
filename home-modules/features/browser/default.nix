@@ -147,8 +147,9 @@ in
                     "browser.startup.homepage_override.extensionControlled" = true;
                     "browser.startup.homepage_override.privateAllowed" = false;
                     "services.sync.declinedEngines" = "prefs,passwords,addons,addresses,creditcards";
-                    "privacy.resistFingerprinting" = true;
+                    "privacy.resistFingerprinting" = false;
                     "floorp.panelSidebar.enabled" = false;
+                    "browser.preferences.defaultPerformanceSettings.enabled" = false;
                 };
                 extensions = {
                     packages =
