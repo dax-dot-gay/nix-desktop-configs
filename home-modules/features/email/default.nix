@@ -85,6 +85,5 @@
       type = "application";
       comment = "Read and write e-mails or RSS feeds, or manage tasks on calendars.";
       mimeType = ["message/rfc822" "x-scheme-handler/mailto" "text/calendar" "text/x-vcard"];
-      keywords = ["mail" "email" "e-mail" "messages" "rss" "calendar" "address book" "addressbook" "chat"];
    };
 }
