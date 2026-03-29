@@ -148,6 +148,7 @@ in
                     "browser.startup.homepage_override.privateAllowed" = false;
                     "services.sync.declinedEngines" = "prefs,passwords,addons,addresses,creditcards";
                     "privacy.resistFingerprinting" = true;
+                    "floorp.panelSidebar.enabled" = false;
                 };
                 extensions = {
                     packages =
