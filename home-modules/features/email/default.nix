@@ -74,11 +74,17 @@
       "${pkgs.protonmail-bridge-gui}/bin/protonmail-bridge-gui"
    ];
 
-   xdg.desktopEntries.thunderbird = lib.mkForce {
+   xdg.desktopEntries.thunderbird = {
       name = "Thunderbird";
       genericName = "Email Client";
       exec = "systemctl --user start thunderbird-gui";
       terminal = false;
       categories = ["Network" "Feed" "Email"];
+      icon = "thunderbird";
+      startupNotify = true;
+      type = "application";
+      comment = "Read and write e-mails or RSS feeds, or manage tasks on calendars.";
+      mimeType = ["message/rfc822" "x-scheme-handler/mailto" "text/calendar" "text/x-vcard"];
+      keywords = ["mail" "email" "e-mail" "messages" "rss" "calendar" "address book" "addressbook" "chat"];
    };
 }
