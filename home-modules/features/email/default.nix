@@ -38,7 +38,7 @@
          };
          Service = {
             # I also use connman, so I delay starting Thunderbird-headless until WAN-connectivity is up
-            ExecStart = "${pkgs.thunderbird}/bin/.thunderbird-wrapped__ --headless";
+            ExecStart = "${pkgs.thunderbird}/bin/.thunderbird-wrapped_ --headless";
             Restart = "on-failure";
          };
          Install.WantedBy = [ "default.target" ];
@@ -58,7 +58,7 @@
                # thunderbird invocations shouldn't spawn a new-instance but
                # can change the active instance (i.e. thunderbird -mail)
                thunderbird-gui = pkgs.writeShellScriptBin "thunderbird-gui" ''
-                  ${pkgs.thunderbird}/bin/.thunderbird-wrapped__ &
+                  ${pkgs.thunderbird}/bin/.thunderbird-wrapped_ &
                   pid="$!"
                   sleep 3
                   systemd-notify --ready
