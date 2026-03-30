@@ -29,6 +29,8 @@
         btop-rocm
         rocmPackages.rocm-smi
         killall
+        pciutils
+        usbutils
     ];
     programs.git = {
         enable = true;

@@ -103,4 +103,19 @@
     systemd.services."network-addresses-wlp9s0".enable = lib.mkForce false;
     systemd.services."network-addresses-enp20s0f3u1u4u3".enable = lib.mkForce false;
     systemd.services."network-addresses-wlp10s0".enable = lib.mkForce false;
+
+    # Keychron setup
+    services.udev.extraRules = ''
+        # Keychron hidraw (Needed for WebUSB access on Chromium browsers)
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", GROUP="users", TAG+="uaccess"
+
+        # Configure USB (Mouse)
+        SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d049", MODE="0660", GROUP="users", TAG+="uaccess"
+
+        # Configure USB (Keyboard)
+        SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="1060", MODE="0660", GROUP="users", TAG+="uaccess"
+
+        # Configure 2.4GHz (Mouse)
+        SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0660", GROUP="users", TAG+="uaccess"
+    '';
 }
