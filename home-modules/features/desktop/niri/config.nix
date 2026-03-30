@@ -139,6 +139,13 @@
                         command = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
                     };
                 };
+                # Toggle mic mute alt
+                "Mod+Ctrl+Shift+Escape" = {
+                    action.spawn-sh = {
+                        allow-when-locked = true;
+                        command = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+                    };
+                };
                 XF86AudioPlay = {
                     action.spawn-sh = {
                         allow-when-locked = true;
