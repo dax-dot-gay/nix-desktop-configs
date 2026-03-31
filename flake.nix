@@ -118,8 +118,8 @@
                 };
                 stryker = mkMachine {
                     hostname = "stryker";
-                    features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" ];
-                    home-features = [ "desktop" "email" "browser" ];
+                    features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" "lesbos-access" ];
+                    home-features = [ "desktop" "email" "browser" "lesbos-access" ];
                 };
             };
         };
