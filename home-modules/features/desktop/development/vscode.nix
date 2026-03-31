@@ -88,6 +88,7 @@ in
                 "terminal.integrated.fontFamily" = "'Fira Code', sans-serif";
                 "terminal.integrated.fontLigatures.enabled" = true;
                 "editor.fontLigatures" = true;
+                "sops.defaults.ageKeyFile" = "$HOME/.config/sops/age/keys.txt";
             };
         };
         
