@@ -1,4 +1,4 @@
-{ pkgs, nix-vscode-extensions, ... }:
+{ pkgs, nix-vscode-extensions, config, ... }:
 let
     system = "x86_64-linux";
     extensions = nix-vscode-extensions.extensions.${system};
@@ -88,7 +88,7 @@ in
                 "terminal.integrated.fontFamily" = "'Fira Code', sans-serif";
                 "terminal.integrated.fontLigatures.enabled" = true;
                 "editor.fontLigatures" = true;
-                "sops.defaults.ageKeyFile" = "$HOME/.config/sops/age/keys.txt";
+                "sops.defaults.ageKeyFile" = "/home/${config.homeflake.info.username}/.config/sops/age/keys.txt";
             };
         };
         
