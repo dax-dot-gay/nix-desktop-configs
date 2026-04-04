@@ -13,7 +13,7 @@
       pkgs.gimp
       pkgs.krita
       pkgs.swayimg
-      pkgs.musicpod
+      pkgs.kdePackages.kasts
     ];
     services.playerctld = {
       enable = true;
