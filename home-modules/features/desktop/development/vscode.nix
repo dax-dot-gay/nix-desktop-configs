@@ -89,6 +89,7 @@ in
                 "terminal.integrated.fontLigatures.enabled" = true;
                 "editor.fontLigatures" = true;
                 "sops.defaults.ageKeyFile" = "/home/${config.homeflake.info.username}/.config/sops/age/keys.txt";
+                "editor.detectIndentation" = false;
             };
         };
         
