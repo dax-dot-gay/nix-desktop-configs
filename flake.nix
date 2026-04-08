@@ -121,6 +121,11 @@
                     features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" "lesbos-access" ];
                     home-features = [ "desktop" "email" "browser" "lesbos-access" ];
                 };
+                daubigny = mkMachine {
+                    hostname = "daubigny";
+                    features = ["desktop" "multimedia" "nitrokey" "lesbos-access"];
+                    home-features = ["desktop" "email" "browser" "lesbos-access"];
+                };
             };
         };
 }

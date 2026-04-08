@@ -2,6 +2,7 @@ keys:
   - &dax age1khpcjxg98tnu65xnnd6nmf95c508jn2lt4tlc8h625yfjngaaetsmp2d8s
   - &sys-testbed age1hgxy9kgfn5nwpwwshj6k5nftm2yzqcgn6mksq8w5c4uqr2xae9hqd2w66z
   - &sys-stryker age17rkdu3xmrr4mlq4hr6jyah9n92jauu0ym3zdnxrgvpvxnu5nvseqw898hq
+  - &sys-daubigny age16zqzuscn8tqejrhwxulv2qxujpvfvlxeue5tnk2kynw726s32ajqedenkp
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -9,6 +10,7 @@ creation_rules:
           - *dax
           - *sys-testbed
           - *sys-stryker
+          - *sys-daubigny
   - path_regex: secrets/machines/testbed/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
@@ -19,3 +21,8 @@ creation_rules:
       - age:
           - *dax
           - *sys-stryker
+  - path_regex: secrets/machines/daubigny/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *dax
+          - *sys-daubigny
