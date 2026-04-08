@@ -13,7 +13,7 @@
     };
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.initrd.systemd.enable = true;
-    environment.systemPackages = [pkgs.sbctl];
+    environment.systemPackages = [pkgs.sbctl pkgs.limine-full pkgs.efibootmgr];
     boot.consoleLogLevel = 3;
     boot.initrd.verbose = false;
     boot.kernelParams = [
