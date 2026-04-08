@@ -10,6 +10,7 @@
                 groups = [ "users" ];
             };
         };
+        stateVersion = "25.11";
     };
     flake.openssh = {
         enable = true;
