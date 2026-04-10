@@ -53,4 +53,5 @@
         powertop.enable = true;
         cpuFreqGovernor = "schedUtil";
     };
+    services.upower.enable = true;
 }
