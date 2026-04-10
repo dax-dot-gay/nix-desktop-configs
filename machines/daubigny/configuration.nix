@@ -43,4 +43,14 @@
             }
         '';
     };
+    hardware.system76.enableAll = true;
+    hardware.intel-gpu-tools.enable = true;
+    services.system76-scheduler.enable = true;
+    services.system76-scheduler.settings.cfsProfiles.enable = true;
+    services.thermald.enable = true;
+    powerManagement = {
+        enable = true;
+        powertop.enable = true;
+        cpuFreqGovernor = "schedUtil";
+    };
 }
