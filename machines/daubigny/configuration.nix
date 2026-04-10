@@ -7,7 +7,7 @@
             dax = {
                 superuser = true;
                 provision-ssh = true;
-                groups = [ "users" ];
+                groups = [ "users" "networkmanager" ];
             };
         };
         stateVersion = "25.11";
