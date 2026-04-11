@@ -7,7 +7,7 @@
             dax = {
                 superuser = true;
                 provision-ssh = true;
-                groups = [ "users" ];
+                groups = [ "users" "networkmanager" ];
             };
         };
         stateVersion = "25.11";
@@ -43,4 +43,15 @@
             }
         '';
     };
+    hardware.system76.enableAll = true;
+    hardware.intel-gpu-tools.enable = true;
+    services.system76-scheduler.enable = true;
+    services.system76-scheduler.settings.cfsProfiles.enable = true;
+    services.thermald.enable = true;
+    powerManagement = {
+        enable = true;
+        powertop.enable = true;
+        cpuFreqGovernor = "schedUtil";
+    };
+    services.upower.enable = true;
 }

@@ -51,6 +51,7 @@ in
             ])
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
+                hediet.vscode-drawio
             ]);
             userSettings = {
                 "catppuccin-noctis-icons.hidesExplorerArrows" = false;
