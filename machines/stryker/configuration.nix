@@ -119,4 +119,5 @@
         # Configure 2.4GHz (Mouse)
         SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0777", GROUP="users", TAG+="uaccess"
     '';
+    services.upower.enable = true;
 }
