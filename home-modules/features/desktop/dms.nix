@@ -7,7 +7,6 @@
             nixMonitor.enable = true;
             niriScreenshot.enable = true;
             tailscale.enable = true;
-            displayOutput.enable = true;
             displayManager.enable = true;
             dankAudioVisualizer.enable = true;
         };
