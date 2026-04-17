@@ -6,6 +6,7 @@
         equibop
         delfin
         libreoffice-fresh
+        obsidian
     ];
     services.syncthing = {
         enable = true;

@@ -14,6 +14,7 @@
       pkgs.krita
       pkgs.swayimg
       pkgs.kdePackages.kasts
+      pkgs.obs-studio
     ];
     services.playerctld = {
       enable = true;
