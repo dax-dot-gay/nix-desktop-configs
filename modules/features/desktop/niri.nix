@@ -21,7 +21,7 @@
         useNautilus = false;
     };
     xdg.portal.config.niri = {
-        "default" = ["gtk"];
+        "default" = ["gnome"];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
         "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
