@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
     programs.dank-material-shell = {
         enable = true;
@@ -9,6 +9,7 @@
             tailscale.enable = true;
             displayManager.enable = true;
             dankAudioVisualizer.enable = true;
+            amdGpuMonitor.enable = true;
         };
     };
     programs.nix-monitor = {
@@ -19,4 +20,5 @@
         nixpkgsChannel = "nixos-unstable";
     };
     home.file.".config/DankMaterialShell/themes/catppuccin/theme.json".source = ./catppuccin.json;
+    home.packages = [pkgs.amdgpu_top];
 }
