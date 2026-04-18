@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
     flake.system-configuration = {
         enable = true;
@@ -120,4 +120,5 @@
         SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0777", GROUP="users", TAG+="uaccess"
     '';
     services.upower.enable = true;
+    environment.systemPackages = with pkgs; [ obs-studio kdePackages.kdenlive ];
 }
