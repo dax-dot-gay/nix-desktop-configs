@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+    config,
+    lib,
+    pkgs,
+    ...
+}:
 {
     flake.system-configuration = {
         enable = true;
@@ -7,7 +12,7 @@
             dax = {
                 superuser = true;
                 provision-ssh = true;
-                groups = ["users"];
+                groups = [ "users" ];
             };
         };
         stateVersion = "25.11";
@@ -120,5 +125,20 @@
         SUBSYSTEM=="usb",  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0777", GROUP="users", TAG+="uaccess"
     '';
     services.upower.enable = true;
-    environment.systemPackages = with pkgs; [ obs-studio kdePackages.kdenlive ];
+    environment.systemPackages = with pkgs; [
+        kdePackages.kdenlive
+        (wrapOBS {
+            plugins = [
+                obs-studio-plugins.wlrobs
+                obs-studio-plugins.obs-pipewire-audio-capture
+                obs-studio-plugins.obs-backgroundremoval
+            ];
+        })
+    ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [
+        v4l2loopback
+    ];
+    boot.extraModprobeConfig = ''
+        options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
 }
