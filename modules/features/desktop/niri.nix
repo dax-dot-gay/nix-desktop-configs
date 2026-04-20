@@ -20,6 +20,7 @@
         withXDG = true;
         useNautilus = false;
     };
+    xdg.portal.enable = true;
     xdg.portal.config.niri = {
         "default" = ["gnome"];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
