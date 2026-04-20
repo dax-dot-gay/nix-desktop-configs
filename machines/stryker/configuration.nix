@@ -12,7 +12,7 @@
             dax = {
                 superuser = true;
                 provision-ssh = true;
-                groups = [ "users" ];
+                groups = [ "users" "wireshark" ];
             };
         };
         stateVersion = "25.11";
@@ -141,4 +141,10 @@
     boot.extraModprobeConfig = ''
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
+
+    programs.wireshark = {
+        enable = true;
+        dumpcap.enable = true;
+        usbmon.enable = true;
+    };
 }
