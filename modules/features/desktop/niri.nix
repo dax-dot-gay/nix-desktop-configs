@@ -23,7 +23,7 @@
     xdg.portal.enable = true;
     xdg.portal.config.niri = {
         "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "default" = "gnome";
+        "default" = ["gtk" "gnome"];
     };
     xdg.portal.extraPortals = with pkgs; [
         gnome-keyring
