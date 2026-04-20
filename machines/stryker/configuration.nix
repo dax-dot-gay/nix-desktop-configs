@@ -127,6 +127,7 @@
     services.upower.enable = true;
     environment.systemPackages = with pkgs; [
         kdePackages.kdenlive
+        wireshark
         (wrapOBS {
             plugins = [
                 obs-studio-plugins.wlrobs
