@@ -2,7 +2,7 @@
 {
     environment.variables = {
         NIXOS_OZONE_WL = "1";
-        XDG_CURRENT_DESKTOP = "GNOME";
+        XDG_CURRENT_DESKTOP = "Cinnamon";
     };
 
     environment.systemPackages = with pkgs; [

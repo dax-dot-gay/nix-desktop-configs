@@ -34,7 +34,7 @@
             };
             hotkey-overlay.skip-at-startup = true;
             environment = {
-                XDG_CURRENT_DESKTOP = "GNOME";
+                XDG_CURRENT_DESKTOP = "Cinnamon";
                 QT_QPA_PLATFORMTHEME = "gtk3";
             };
             spawn-at-startup = [
