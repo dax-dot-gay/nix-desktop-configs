@@ -48,6 +48,7 @@ in
                 shd101wyy.markdown-preview-enhanced
                 seyyedkhandon.firacode
                 njpwerner.autodocstring
+                github.vscode-github-actions
             ])
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
@@ -80,6 +81,9 @@ in
                     "editor.defaultFormatter" = "esbenp.prettier-vscode";
                 };
                 "[json]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[html]" = {
                     "editor.defaultFormatter" = "esbenp.prettier-vscode";
                 };
                 "[nix]" = {
