@@ -57,6 +57,10 @@
         nix-flatpak = {
             url = "github:gmodena/nix-flatpak/?ref=latest";
         };
+        nix-obsidian-plugins = {
+            url = "github:dax-dot-gay/nix-obsidian-plugins";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
