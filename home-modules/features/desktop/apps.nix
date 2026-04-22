@@ -1,8 +1,4 @@
 { pkgs, nix-obsidian-plugins, ... }:
-let
-    plugins = nix-obsidian-plugins.plugins;
-    themes = nix-obsidian-plugins.themes;
-in
 {
     home.packages = with pkgs; [
         feishin
@@ -39,13 +35,13 @@ in
                     themes = [
                         {
                             enable = true;
-                            pkg = themes.catppuccin;
+                            pkg = nix-obsidian-plugins.packages.theme-catppuccin;
                         }
                     ];
                     communityPlugins = [
                         {
                             enable = true;
-                            pkg = plugins.obsidian-style-settings;
+                            pkg = nix-obsidian-plugins.packages.plugin-obsidian-style-settings;
                         }
                     ];
                 };
