@@ -86,6 +86,7 @@
                     specialArgs = inputs // {
                         hostname = "${hostname}";
                         utilities = utilities;
+                        currentSystem = system;
                         hm_args = {
                             inputs = inputs;
                             home-flakes = home-flakes;

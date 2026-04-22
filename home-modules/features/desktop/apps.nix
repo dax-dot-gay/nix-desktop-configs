@@ -1,7 +1,7 @@
-{ pkgs, nix-obsidian-plugins, ... }:
+{ pkgs, nix-obsidian-plugins, currentSystem, ... }:
 let
-    plugins = nix-obsidian-plugins.plugins.${builtins.currentSystem};
-    themes = nix-obsidian-plugins.themes.${builtins.currentSystem};
+    plugins = nix-obsidian-plugins.plugins.${currentSystem};
+    themes = nix-obsidian-plugins.themes.${currentSystem};
 in
 {
     home.packages = with pkgs; [

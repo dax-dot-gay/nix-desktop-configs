@@ -5,6 +5,7 @@
     utilities,
     hostname,
     hm_args,
+    currentSystem,
     ...
 }:
 with lib;
@@ -333,6 +334,7 @@ in
                 hostname = "${hostname}";
                 utilities = utilities;
                 stateVersion = cfg.stateVersion;
+                currentSystem = currentSystem;
             };
             sharedModules = [
                 ../../home-modules/defaults
