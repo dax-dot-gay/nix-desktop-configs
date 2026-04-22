@@ -1,4 +1,8 @@
 { pkgs, nix-obsidian-plugins, ... }:
+let
+    plugins = nix-obsidian-plugins.plugins.${builtins.currentSystem};
+    themes = nix-obsidian-plugins.themes.${builtins.currentSystem};
+in
 {
     home.packages = with pkgs; [
         feishin
@@ -14,9 +18,9 @@
     xdg.autostart = {
         enable = true;
         entries = [
-          "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop"
-          "${pkgs.equibop}/share/applications/equibop.desktop"
-          "${pkgs.cinny-desktop}/share/applications/Cinny.desktop"
+            "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop"
+            "${pkgs.equibop}/share/applications/equibop.desktop"
+            "${pkgs.cinny-desktop}/share/applications/Cinny.desktop"
         ];
     };
     programs.obsidian = {
@@ -35,13 +39,13 @@
                     themes = [
                         {
                             enable = true;
-                            pkg = nix-obsidian-plugins.packages.theme-catppuccin;
+                            pkg = themes.catppuccin;
                         }
                     ];
                     communityPlugins = [
                         {
                             enable = true;
-                            pkg = nix-obsidian-plugins.packages.plugin-obsidian-style-settings;
+                            pkg = plugins.obsidian-style-settings;
                         }
                     ];
                 };
