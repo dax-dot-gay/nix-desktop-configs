@@ -25,31 +25,5 @@ in
     };
     programs.obsidian = {
         enable = true;
-        vaults = {
-            Test = {
-                enable = true;
-                settings = {
-                    appearance = {
-                        cssTheme = "Catppuccin";
-                        theme = "obsidian";
-                        textFontFamily = "Inter";
-                        interfaceFontFamily = "Inter";
-                        monospaceFontFamily = "Source Code Pro";
-                    };
-                    themes = [
-                        {
-                            enable = true;
-                            pkg = themes.catppuccin;
-                        }
-                    ];
-                    communityPlugins = [
-                        {
-                            enable = true;
-                            pkg = plugins.obsidian-style-settings;
-                        }
-                    ];
-                };
-            };
-        };
     };
 }
