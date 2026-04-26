@@ -61,6 +61,9 @@
             url = "github:dax-dot-gay/nix-obsidian-plugins";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        eden-emu = {
+            url = "github:daaboulex/eden-nix";
+        };
     };
 
     outputs =

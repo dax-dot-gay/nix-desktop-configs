@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, eden-emu, ... }:
 {
     imports = [
         ./steam.nix
+        eden-emu.nixosModules.default
     ];
     environment.systemPackages = with pkgs; [
         (prismlauncher.override {
@@ -16,4 +17,5 @@
         wine
         wine64
     ];
+    programs.eden.enable = true;
 }
