@@ -7,6 +7,7 @@
         (prismlauncher.override {
             additionalPrograms = [ffmpeg];
         })
+        modrinth-app
         ckan
         satisfactorymodmanager
         zenity
