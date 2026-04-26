@@ -22,7 +22,6 @@
     ];
     environment.systemPackages = [
         pkgs.keepassxc
-        pkgs.appimage-run
     ];
     services.gvfs.enable = true;
     services.udisks2 = {
@@ -31,5 +30,9 @@
     programs.localsend = {
         enable = true;
         openFirewall = true;
+    };
+    programs.appimage = {
+        enable = true;
+        binfmt = true;
     };
 }
