@@ -15,6 +15,5 @@
         websocat
         wine
         wine64
-        eden
     ];
 }

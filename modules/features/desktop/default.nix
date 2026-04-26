@@ -22,6 +22,7 @@
     ];
     environment.systemPackages = [
         pkgs.keepassxc
+        pkgs.appimage-run
     ];
     services.gvfs.enable = true;
     services.udisks2 = {
