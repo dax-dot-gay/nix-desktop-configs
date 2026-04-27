@@ -22,6 +22,7 @@
     ];
     environment.systemPackages = [
         pkgs.keepassxc
+        pkgs.gnome-disk-utility
     ];
     services.gvfs.enable = true;
     services.udisks2 = {

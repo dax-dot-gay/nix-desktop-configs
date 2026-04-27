@@ -31,6 +31,7 @@
         killall
         pciutils
         usbutils
+        ntfs3g
     ];
     programs.git = {
         enable = true;
