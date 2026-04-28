@@ -52,7 +52,7 @@
                     match = [
                         { app-id = "com.mitchellh.ghostty"; }
                     ];
-                    dynamic.opacity = 0.95;
+                    dynamic.opacity = 0.8;
                     dynamic.background-effect = {
                         blur = true;
                     };
@@ -95,10 +95,6 @@
                         {namespace = "^dms:desktop-widget:.*";}
                     ];
                     shadow.enable = false;
-                    opacity = 0.95;
-                    background-effect = {
-                        blur = true;
-                    };
                 };
             };
             binds = {
