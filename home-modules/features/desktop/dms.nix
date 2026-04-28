@@ -9,7 +9,8 @@
             tailscale.enable = true;
             displayManager.enable = true;
             dankAudioVisualizer.enable = true;
-            amdGpuMonitor.enable = true;
+            amdGpuMonitorRevive.enable = true;
+            clipboardPlus.enable = true;
         };
     };
     programs.nix-monitor = {
