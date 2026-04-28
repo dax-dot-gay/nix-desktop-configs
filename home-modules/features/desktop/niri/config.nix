@@ -2,7 +2,7 @@
 {
     wayland.windowManager.niri = {
         enable = true;
-        variant = "stable";
+        variant = "unstable";
         settings = {
             input = {
                 keyboard.numlock = true;
@@ -13,6 +13,9 @@
                 focus-follows-mouse = {
                     max-scroll-amount = "0%";
                 };
+            };
+            blur = {
+                enable = true;
             };
             gestures.hot-corners = [ ];
             prefer-no-csd = true;
@@ -50,6 +53,9 @@
                         { app-id = "com.mitchellh.ghostty"; }
                     ];
                     dynamic.opacity = 0.95;
+                    dynamic.background-effect = {
+                        blur = true;
+                    };
                 };
                 always-fullscreen = {
                     match = [
@@ -89,6 +95,10 @@
                         {namespace = "^dms:desktop-widget:.*";}
                     ];
                     shadow.enable = false;
+                    opacity = 0.95;
+                    background-effect = {
+                        blur = true;
+                    };
                 };
             };
             binds = {
