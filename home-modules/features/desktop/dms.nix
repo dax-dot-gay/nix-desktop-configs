@@ -21,5 +21,5 @@
         nixpkgsChannel = "nixos-unstable";
     };
     home.file.".config/DankMaterialShell/themes/catppuccin/theme.json".source = ./catppuccin.json;
-    home.packages = [pkgs.amdgpu_top];
+    home.packages = [pkgs.amdgpu_top pkgs.kdePackages.qt5compat];
 }
