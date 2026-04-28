@@ -4,7 +4,7 @@
     boot.loader.limine = {
         enable = true;
         efiSupport = true;
-        maxGenerations = 3;
+        maxGenerations = 4;
     };
     boot.loader.timeout = null;
     boot.loader.efi = {
@@ -18,7 +18,6 @@
     boot.initrd.verbose = false;
     boot.kernelParams = [
         "quiet"
-        "udev.log_level=3"
         "systemd.show_status=auto"
     ];
 }
