@@ -10,6 +10,7 @@ in
         equibop
         delfin
         libreoffice-fresh
+        pdfarranger
     ];
     services.syncthing = {
         enable = true;
