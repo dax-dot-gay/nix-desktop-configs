@@ -16,7 +16,7 @@
     ];
     programs.niri = {
         enable = true;
-        variant = "stable";
+        variant = "unstable";
         withXDG = true;
         useNautilus = false;
     };
