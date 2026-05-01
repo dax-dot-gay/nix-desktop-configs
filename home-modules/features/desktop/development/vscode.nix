@@ -49,6 +49,8 @@ in
                 seyyedkhandon.firacode
                 njpwerner.autodocstring
                 github.vscode-github-actions
+                vadimcn.vscode-lldb
+                firefox-devtools.vscode-firefox-debug
             ])
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
