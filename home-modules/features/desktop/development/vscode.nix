@@ -53,7 +53,7 @@ in
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
                 hediet.vscode-drawio
-                ChrisBeard.rustdocstring
+                chrisbeard.rustdocstring
             ]);
             userSettings = {
                 "catppuccin-noctis-icons.hidesExplorerArrows" = false;
