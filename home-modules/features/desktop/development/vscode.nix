@@ -50,7 +50,6 @@ in
                 github.vscode-github-actions
                 vadimcn.vscode-lldb
                 firefox-devtools.vscode-firefox-debug
-                henriquebruno.github-repository-manager
                 github.vscode-pull-request-github
             ])
             ++ (with extensions.vscode-marketplace-release; [
