@@ -45,7 +45,6 @@ in
                 tombi-toml.tombi
                 redhat.vscode-yaml
                 firefox-devtools.vscode-firefox-debug
-                shd101wyy.markdown-preview-enhanced
                 seyyedkhandon.firacode
                 njpwerner.autodocstring
                 github.vscode-github-actions
@@ -53,6 +52,7 @@ in
                 firefox-devtools.vscode-firefox-debug
                 henriquebruno.github-repository-manager
                 github.vscode-pull-request-github
+                sndst00m.markdown-github-dark-pack
             ])
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
