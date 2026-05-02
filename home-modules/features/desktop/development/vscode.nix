@@ -52,12 +52,15 @@ in
                 firefox-devtools.vscode-firefox-debug
                 henriquebruno.github-repository-manager
                 github.vscode-pull-request-github
-                sndst00m.markdown-github-dark-pack
             ])
             ++ (with extensions.vscode-marketplace-release; [
                 kdl-org.kdl
                 hediet.vscode-drawio
                 chrisbeard.rustdocstring
+                bierner.markdown-yaml-preamble
+                bierner.markdown-checkbox
+                bierner.markdown-emoji
+                ozaki.markdown-github-dark
             ]);
             userSettings = {
                 "catppuccin-noctis-icons.hidesExplorerArrows" = false;
