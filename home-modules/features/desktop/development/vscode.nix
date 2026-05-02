@@ -102,6 +102,15 @@ in
                 "editor.fontLigatures" = true;
                 "sops.defaults.ageKeyFile" = "/home/${config.homeflake.info.username}/.config/sops/age/keys.txt";
                 "editor.detectIndentation" = false;
+                "[jsonc]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[scss]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
+                "[css]" = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                };
             };
         };
         
