@@ -11,7 +11,6 @@ in
             extensions =
             (with extensions.open-vsx-release; [
                 signageos.signageos-vscode-sops
-                gavinleroy.argus
                 ms-python.autopep8
                 mads-hartmann.bash-ide-vscode
                 washan.cargo-appraiser
@@ -111,6 +110,7 @@ in
                 "[css]" = {
                     "editor.defaultFormatter" = "esbenp.prettier-vscode";
                 };
+                "redhat.telemetry.enabled" = false;
             };
         };
         
