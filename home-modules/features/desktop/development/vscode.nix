@@ -4,9 +4,8 @@ let
     extensions = nix-vscode-extensions.extensions.${system};
 in
 {
-    programs.vscode = {
+    programs.vscodium = {
         enable = true;
-        package = pkgs.vscodium;
         profiles.default = {
             extensions =
             (with extensions.open-vsx-release; [
