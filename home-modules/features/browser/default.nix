@@ -99,12 +99,16 @@ in
                     "browser.startup.homepage_override.privateAllowed" = false;
                     "services.sync.declinedEngines" = "prefs,passwords,addons,addresses,creditcards";
                     "privacy.resistFingerprinting" = false;
-                    "floorp.panelSidebar.enabled" = false;
                     "browser.preferences.defaultPerformanceSettings.enabled" = false;
                     "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
-                    "webgl.disable" = false;
                     "webgl.disabled" = false;
                     "webgl.force-enabled" = true;
+                    "privacy.clearOnShutdown.history" = false;
+                    "privacy.clearOnShutdown.cookies" = false;
+                    "network.cookie.lifetimePolicy" = 0;
+                    "cookiebanners.service.mode.privateBrowsing" = 2;
+                    "cookiebanners.service.mode" = 2;
+                    "identity.fxaccounts.enabled" = true;
                 };
                 extensions = {
                     packages =
