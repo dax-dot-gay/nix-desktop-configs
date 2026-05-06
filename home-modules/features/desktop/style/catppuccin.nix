@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
     stylix = {
         enable = true;
@@ -20,4 +20,5 @@
     };
     gtk.iconTheme.package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; flavor = "mocha"; };
     gtk.iconTheme.name = "Papirus-Dark";
+    gtk.gtk4.theme = config.gtk.theme;
 }

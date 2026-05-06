@@ -10,7 +10,6 @@
         ".icons/default".source = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
     };
     homeflake.browser = {
-        floorp.enable = true;
         librewolf.enable = true;
     };
 }

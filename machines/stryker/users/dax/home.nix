@@ -24,7 +24,6 @@ with config.lib.file;
     };
     homeflake.browser = {
         librewolf.enable = true;
-        floorp.enable = true;
         chromium.enable = true;
     };
 }

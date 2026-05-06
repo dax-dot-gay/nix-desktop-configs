@@ -12,62 +12,13 @@ in
     options.homeflake.browser = {
         librewolf = {
             enable = mkEnableOption "Enable Librewolf";
-            features = {
-                keepSiteData = mkEnableOption "Allow saving cookies & storage on close";
-                webgl = mkEnableOption "Enable WebGL";
-            };
-        };
-        floorp = {
-            enable = mkEnableOption "Enable Floorp";
-            extraExtensions = mkOption {
-                type = types.listOf types.package;
-                default = [ ];
-                description = "List of additional extension packages to add";
-            };
         };
         chromium = {
             enable = mkEnableOption "Enable Chromium";
         };
     };
     config = {
-        programs.librewolf = mkIf cfg.librewolf.enable {
-            enable = true;
-            profiles.default = {
-                search = {
-                    default = "ddg";
-                    privateDefault = "ddg";
-                    force = true;
-                };
-                settings = {
-                    "browser.theme.content-theme" = 0;
-                    "browser.theme.toolbar-theme" = 0;
-                    "extensions.autoDisableScopes" = 0;
-                    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-                    "extensions.activeThemeId" = "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}";
-                    "privacy.clearOnShutdown_v2.cookiesAndStorage" = cfg.librewolf.features.keepSiteData;
-                }
-                // optionalAttrs cfg.librewolf.features.webgl {
-                    "webgl.disable" = false;
-                    "webgl.disabled" = false;
-                    "webgl.force-enabled" = true;
-                };
-                extensions = {
-                    packages = with pkgs.nur.repos.rycee.firefox-addons; [
-                        ublock-origin
-                        sidebery
-                        privacy-badger
-                        catppuccin-mocha-mauve
-                    ];
-                    force = true;
-                };
-                userChrome = ''
-                    #TabsToolbar {
-                        visibility: collapse;
-                    }
-                '';
-            };
-        };
-        programs.floorp = mkIf cfg.floorp.enable {
+        programs.librewolf = mkIf cfg.chromium.enable {
             enable = true;
             profiles.default = {
                 containers = {
@@ -150,6 +101,10 @@ in
                     "privacy.resistFingerprinting" = false;
                     "floorp.panelSidebar.enabled" = false;
                     "browser.preferences.defaultPerformanceSettings.enabled" = false;
+                    "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+                    "webgl.disable" = false;
+                    "webgl.disabled" = false;
+                    "webgl.force-enabled" = true;
                 };
                 extensions = {
                     packages =
@@ -168,8 +123,7 @@ in
                             mtab
                             pkgs.nur.repos.rycee.firefox-addons."2fas-two-factor-authentication"
                             zoom-redirector
-                        ]
-                        ++ cfg.floorp.extraExtensions;
+                        ];
                     settings."contact@maxhu.dev".settings = builtins.fromJSON (builtins.readFile ./mtab.json);
                     force = true;
                 };
