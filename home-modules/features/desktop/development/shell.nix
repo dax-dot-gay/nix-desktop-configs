@@ -70,6 +70,7 @@
         devenv
         nixd
         nixfmt
+        android-tools
     ];
     programs.direnv = {
         enable = true;
