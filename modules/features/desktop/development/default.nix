@@ -3,7 +3,4 @@
     imports = [
         ./vscode.nix
     ];
-    environment.systemPackages = with pkgs; [
-        android-tools
-    ];
 }

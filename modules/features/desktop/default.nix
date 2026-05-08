@@ -23,6 +23,7 @@
     environment.systemPackages = [
         pkgs.keepassxc
         pkgs.gnome-disk-utility
+        pkgs.android-tools
     ];
     services.gvfs.enable = true;
     services.udisks2 = {
