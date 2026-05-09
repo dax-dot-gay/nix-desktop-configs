@@ -2,6 +2,7 @@
 {
     imports = [
         ./steam.nix
+        ./vintagestory.nix
         eden-emu.nixosModules.default
     ];
     environment.systemPackages = with pkgs; [
@@ -16,7 +17,6 @@
         websocat
         wine
         wine64
-        vintagestory
     ];
     environment.sessionVariables.XDG_DATA_DIRS = [ "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" ];
 }

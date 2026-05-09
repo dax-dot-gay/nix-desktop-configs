@@ -64,6 +64,10 @@
         eden-emu = {
             url = "github:daaboulex/eden-nix";
         };
+        vintagestory-nix = {
+            url = "git+https://codeberg.org/PierreBorine/vintagestory-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs =
@@ -118,7 +122,7 @@
                 stryker = mkMachine {
                     hostname = "stryker";
                     features = [ "desktop" "multimedia" "nitrokey" "gaming" "flatpak" "lesbos-access" ];
-                    home-features = [ "desktop" "email" "browser" "lesbos-access" ];
+                    home-features = [ "desktop" "email" "browser" "lesbos-access" "gaming" ];
                 };
                 daubigny = mkMachine {
                     hostname = "daubigny";
